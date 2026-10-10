@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { Plus, Search, ArrowUpRight } from 'lucide-react';
-import { money } from '@/lib/utils';
+import { money, visibleVariants } from '@/lib/utils';
 import type { Product } from '@/lib/types';
 export function AdminProducts({ products }: { products: Product[] }) {
   const [search, setSearch] = useState('');
@@ -51,7 +51,7 @@ export function AdminProducts({ products }: { products: Product[] }) {
                 </td>
                 <td>{p.category}</td>
                 <td>{money(p.price)}</td>
-                <td>{p.variants.reduce((n, v) => n + v.stock, 0)}</td>
+                <td>{visibleVariants(p).reduce((n, v) => n + v.stock, 0)}</td>
                 <td>
                   <span className={`status-badge ${p.active ? 'confirmed' : 'cancelled'}`}>
                     {p.active ? 'Published' : 'Hidden'}

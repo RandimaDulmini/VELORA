@@ -3,7 +3,7 @@ import { ArrowUpRight, Plus } from 'lucide-react';
 import { requireStaff } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { getProducts } from '@/lib/data';
-import { money, date, orderNumber } from '@/lib/utils';
+import { money, date, orderNumber, visibleVariants } from '@/lib/utils';
 export default async function Page() {
   await requireStaff();
   const db = await createClient();
@@ -101,14 +101,17 @@ export default async function Page() {
         <p className="muted">Active products with sizes at 3 units or fewer.</p>
         <div className="low-stock-list">
           {products
-            .filter((p) => p.active && p.variants.some((v) => v.stock <= 3))
+            .filter((p) => p.active && visibleVariants(p).some((v) => v.stock <= 3))
             .map((p) => (
               <Link href={`/admin/products/${p.id}`} key={p.id}>
                 {p.name}
                 <span>
-                  {p.variants
+                  {visibleVariants(p)
                     .filter((v) => v.stock <= 3)
-                    .map((v) => `${v.size}: ${v.stock}`)
+                    .map(
+                      (v) =>
+                        `${v.color && v.color !== 'Default' ? `${v.color} / ` : ''}${v.size}: ${v.stock}`,
+                    )
                     .join(' · ')}
                 </span>
               </Link>

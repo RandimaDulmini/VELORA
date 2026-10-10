@@ -3,17 +3,16 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Heart, Truck, ShieldCheck, Ruler, PackageCheck } from 'lucide-react';
 import type { Product } from '@/lib/types';
-import { money } from '@/lib/utils';
+import { money, visibleVariants } from '@/lib/utils';
 import { useStore } from './store-provider';
 export function ProductDetail({ product: p }: { product: Product }) {
-  const colors = [...new Set(p.variants.map((variant) => variant.color || 'Default'))];
+  const options = visibleVariants(p);
+  const colors = [...new Set(options.map((variant) => variant.color || 'Default'))];
   const [color, setColor] = useState(colors.length === 1 ? colors[0] : '');
   const [size, setSize] = useState('');
   const [error, setError] = useState('');
   const { add, wishlist, toggleWish } = useStore();
-  const variants = color
-    ? p.variants.filter((variant) => (variant.color || 'Default') === color)
-    : [];
+  const variants = color ? options.filter((variant) => (variant.color || 'Default') === color) : [];
   const showColors = colors.length > 1 || colors[0] !== 'Default';
   return (
     <div className="product-detail">
@@ -40,7 +39,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
                 <button
                   key={option}
                   disabled={
-                    !p.variants.some(
+                    !options.some(
                       (variant) => (variant.color || 'Default') === option && variant.stock > 0,
                     )
                   }
@@ -90,7 +89,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
         <div className="detail-actions">
           <button
             className="button"
-            disabled={p.variants.every((v) => !v.stock)}
+            disabled={options.every((v) => !v.stock)}
             onClick={() => {
               if (!color) {
                 setError('Please choose your colour first.');
@@ -103,7 +102,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
               add(p, size, color);
             }}
           >
-            {p.variants.every((v) => !v.stock) ? 'Sold out' : 'Add to bag'}
+            {options.every((v) => !v.stock) ? 'Sold out' : 'Add to bag'}
             <ArrowRight size={17} />
           </button>
           <button

@@ -36,3 +36,13 @@ export function shippingFee(
 ) {
   return subtotal >= settings.free_shipping_threshold ? 0 : Number(settings.shipping_fee);
 }
+import type { Product, Variant } from './types';
+
+export function visibleVariants(product: Pick<Product, 'variants'>): Variant[] {
+  const hasNamedColors = product.variants.some(
+    (variant) => variant.color && variant.color !== 'Default',
+  );
+  return hasNamedColors
+    ? product.variants.filter((variant) => variant.color && variant.color !== 'Default')
+    : product.variants;
+}

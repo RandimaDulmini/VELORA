@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Heart, ShoppingBag } from 'lucide-react';
 import type { Product } from '@/lib/types';
-import { money } from '@/lib/utils';
+import { money, visibleVariants } from '@/lib/utils';
 import { useStore } from './store-provider';
 export function ProductCard({
   product: p,
@@ -13,14 +13,13 @@ export function ProductCard({
   priority?: boolean;
 }) {
   const { wishlist, toggleWish, add } = useStore();
-  const colors = [...new Set(p.variants.map((variant) => variant.color || 'Default'))];
+  const options = visibleVariants(p);
+  const colors = [...new Set(options.map((variant) => variant.color || 'Default'))];
   const [color, setColor] = useState(colors.length === 1 ? colors[0] : '');
   const [size, setSize] = useState('');
   const [error, setError] = useState('');
-  const soldOut = p.variants.every((v) => v.stock === 0);
-  const variants = color
-    ? p.variants.filter((variant) => (variant.color || 'Default') === color)
-    : [];
+  const soldOut = options.every((v) => v.stock === 0);
+  const variants = color ? options.filter((variant) => (variant.color || 'Default') === color) : [];
   const showColors = colors.length > 1 || colors[0] !== 'Default';
   return (
     <article className="product-card">

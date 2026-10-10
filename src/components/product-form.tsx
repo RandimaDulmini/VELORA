@@ -8,12 +8,22 @@ import { ImageUpload } from './image-upload';
 export function ProductForm({ product: p }: { product?: Product }) {
   const [name, setName] = useState(p?.name || '');
   const [slug, setSlug] = useState(p?.slug || '');
+  const hasNamedColors = p?.variants.some((v) => v.color && v.color !== 'Default') ?? false;
+  const existingVariants = p?.variants
+    .filter((v) => !hasNamedColors || (v.color && v.color !== 'Default'))
+    .map((v) => ({
+      color: v.color === 'Default' ? '' : v.color || '',
+      size: v.size,
+      stock: v.stock,
+    }));
   const [variants, setVariants] = useState(
-    p?.variants.map((v) => ({ color: v.color || 'Default', size: v.size, stock: v.stock })) || [
-      { color: 'Black', size: 'S', stock: 0 },
-      { color: 'Black', size: 'M', stock: 0 },
-      { color: 'Black', size: 'L', stock: 0 },
-    ],
+    existingVariants?.length
+      ? existingVariants
+      : [
+          { color: '', size: 'S', stock: 0 },
+          { color: '', size: 'M', stock: 0 },
+          { color: '', size: 'L', stock: 0 },
+        ],
   );
   return (
     <ActionForm action={saveProduct} submit="Save product" className="product-form">
@@ -138,22 +148,27 @@ export function ProductForm({ product: p }: { product?: Product }) {
           </p>
         </section>
         <section className="panel span-2">
-          <h2>Colours, sizes & inventory</h2>
+          <h2>Sizes & inventory</h2>
           <p className="muted">
-            Add one row for every colour and size combination. Saving replaces the stock count for
-            each option.
+            Add each available size and its stock. Colour is optional—leave it blank when a product
+            has no colour choices.
           </p>
           <div className="variant-grid">
+            <div className="variant-header" aria-hidden="true">
+              <span>Colour (optional)</span>
+              <span>Size</span>
+              <span>Stock</span>
+              <span />
+            </div>
             {variants.map((v, i) => (
               <div className="variant-row" key={i}>
-                <label>
-                  Colour
+                <label className="variant-color">
+                  <span className="variant-field-label">Colour (optional)</span>
                   <input
-                    required
                     aria-label={`Colour ${i + 1}`}
                     value={v.color}
                     maxLength={50}
-                    placeholder="e.g. Black"
+                    placeholder="No colour"
                     onChange={(e) =>
                       setVariants((rows) =>
                         rows.map((r, j) => (j === i ? { ...r, color: e.target.value } : r)),
@@ -162,7 +177,7 @@ export function ProductForm({ product: p }: { product?: Product }) {
                   />
                 </label>
                 <label>
-                  Size
+                  <span className="variant-field-label">Size</span>
                   <input
                     required
                     aria-label={`Size ${i + 1}`}
@@ -176,7 +191,7 @@ export function ProductForm({ product: p }: { product?: Product }) {
                   />
                 </label>
                 <label>
-                  Stock
+                  <span className="variant-field-label">Stock</span>
                   <input
                     required
                     aria-label={`Stock for size ${v.size}`}
@@ -196,7 +211,7 @@ export function ProductForm({ product: p }: { product?: Product }) {
                   className="icon-button"
                   disabled={variants.length === 1}
                   onClick={() => setVariants((rows) => rows.filter((_, j) => j !== i))}
-                  aria-label={`Remove ${v.color} size ${v.size}`}
+                  aria-label={`Remove ${v.color ? `${v.color} ` : ''}size ${v.size}`}
                 >
                   <Trash2 size={17} />
                 </button>
@@ -215,7 +230,7 @@ export function ProductForm({ product: p }: { product?: Product }) {
             }
           >
             <Plus size={15} />
-            Add colour / size
+            Add size
           </button>
           <p className="small muted">
             Removing an existing option sets its stock to zero so previous orders keep their
