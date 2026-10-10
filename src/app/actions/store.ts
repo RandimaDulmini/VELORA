@@ -2,7 +2,13 @@
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 import { requireUser, requireStaff } from '@/lib/auth';
-import { checkoutSchema, productSchema, variantsSchema, settingsSchema } from '@/lib/schemas';
+import {
+  checkoutSchema,
+  productSchema,
+  variantsSchema,
+  settingsSchema,
+  orderReviewSchema,
+} from '@/lib/schemas';
 import { z } from 'zod';
 import type { ActionResult } from '@/lib/types';
 import sharp from 'sharp';
@@ -28,6 +34,9 @@ function safeDbError(message: string) {
     'Paid orders',
     'status change',
     'Complete the bank',
+    'received',
+    'shipped',
+    'review',
   ];
   return allowed.some((s) => message.includes(s))
     ? message
@@ -212,6 +221,38 @@ export async function reviewPayment(_: ActionResult, form: FormData): Promise<Ac
       ? 'Payment approved. This order is ready to dispatch.'
       : 'Receipt rejected. The customer can upload a new receipt.',
   };
+}
+export async function confirmOrderReceived(_: ActionResult, form: FormData): Promise<ActionResult> {
+  await requireUser();
+  const parsed = orderReviewSchema.safeParse({
+    order_id: form.get('order_id'),
+    rating: form.get('rating'),
+    review: form.get('review'),
+  });
+  if (!parsed.success) return { error: parsed.error.issues[0].message };
+  const { error } = await (
+    await createClient()
+  ).rpc('confirm_order_received', {
+    p_order_id: parsed.data.order_id,
+    p_rating: parsed.data.rating,
+    p_review: parsed.data.review,
+  });
+  if (
+    error &&
+    (['42883', 'PGRST202'].includes(error.code || '') ||
+      /confirm_order_received/i.test(error.message))
+  ) {
+    return {
+      error: 'Order confirmation is temporarily unavailable. Please contact the store.',
+    };
+  }
+  if (error) return { error: safeDbError(error.message) };
+  revalidatePath('/account');
+  revalidatePath(`/account/orders/${parsed.data.order_id}`);
+  revalidatePath('/admin');
+  revalidatePath('/admin/orders');
+  revalidatePath(`/admin/orders/${parsed.data.order_id}`);
+  return { redirect: `/account/orders/${parsed.data.order_id}?received=1` };
 }
 export async function saveSettings(_: ActionResult, form: FormData): Promise<ActionResult> {
   await requireStaff(true);

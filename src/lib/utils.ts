@@ -46,3 +46,13 @@ export function visibleVariants(product: Pick<Product, 'variants'>): Variant[] {
     ? product.variants.filter((variant) => variant.color && variant.color !== 'Default')
     : product.variants;
 }
+
+export function isMissingOrderReviewSchema(
+  error: { code?: string; message?: string } | null | undefined,
+) {
+  if (!error) return false;
+  return (
+    ['42703', 'PGRST204'].includes(error.code || '') ||
+    /received_at|review_rating|review_text|review_created_at/i.test(error.message || '')
+  );
+}

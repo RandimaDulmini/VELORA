@@ -11,7 +11,11 @@ export function AdminOrders({ orders }: { orders: Order[] }) {
       (filter === 'all' ||
         (filter === 'review'
           ? o.payment_status === 'review' && o.status === 'pending'
-          : o.status === filter)) &&
+          : filter === 'received'
+            ? !!o.received_at
+            : filter === 'delivered'
+              ? o.status === 'delivered' && !o.received_at
+              : o.status === filter)) &&
       `${o.customer_name} ${o.email} ${o.id}`.toLowerCase().includes(search.toLowerCase()),
   );
   return (
@@ -43,6 +47,7 @@ export function AdminOrders({ orders }: { orders: Order[] }) {
             ['confirmed', 'Ready to dispatch'],
             ['shipped', 'Shipped'],
             ['delivered', 'Delivered'],
+            ['received', 'Received'],
             ['cancelled', 'Cancelled'],
           ].map(([v, label]) => (
             <option key={v} value={v}>
@@ -83,7 +88,9 @@ export function AdminOrders({ orders }: { orders: Order[] }) {
                 </td>
                 <td>{money(o.total)}</td>
                 <td>
-                  <span className={`status-badge ${o.status}`}>{o.status}</span>
+                  <span className={`status-badge ${o.received_at ? 'received' : o.status}`}>
+                    {o.received_at ? 'received' : o.status}
+                  </span>
                 </td>
               </tr>
             ))}

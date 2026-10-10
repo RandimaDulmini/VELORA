@@ -3,18 +3,27 @@ import { Package, ArrowUpRight, LogOut } from 'lucide-react';
 import { requireUser } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { signOut } from '@/app/actions/auth';
-import { money, date, orderNumber } from '@/lib/utils';
+import { money, date, isMissingOrderReviewSchema, orderNumber } from '@/lib/utils';
 export const metadata = { title: 'My account', robots: { index: false, follow: false } };
 export default async function Page() {
   const user = await requireUser();
-  const { data: orders, error } = await (
-    await createClient()
-  )
+  const db = await createClient();
+  let { data: orders, error } = await db
     .from('orders')
-    .select('id,created_at,total,status,payment_status')
+    .select('id,created_at,total,status,payment_status,received_at')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
     .limit(100);
+  if (isMissingOrderReviewSchema(error)) {
+    const legacy = await db
+      .from('orders')
+      .select('id,created_at,total,status,payment_status')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(100);
+    orders = legacy.data?.map((order) => ({ ...order, received_at: null })) ?? null;
+    error = legacy.error;
+  }
   if (error) throw new Error('Could not load orders.');
   return (
     <div className="page-shell">
@@ -49,7 +58,9 @@ export default async function Page() {
                 <strong>{orderNumber(o.id)}</strong>
                 <span>{date(o.created_at)}</span>
               </div>
-              <span className={`status-badge ${o.status}`}>{o.status}</span>
+              <span className={`status-badge ${o.received_at ? 'received' : o.status}`}>
+                {o.received_at ? 'received' : o.status}
+              </span>
               <span>{money(o.total)}</span>
               <ArrowUpRight size={18} />
             </Link>

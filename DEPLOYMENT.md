@@ -48,7 +48,7 @@ git push origin main
 ## 2. Create the Supabase project
 
 1. **New project** at https://supabase.com/dashboard. Choose a region close to your customers (for Sri Lanka, **Singapore** or **Mumbai**) and save the database password.
-2. Open **SQL Editor → New query**. Run every file in `supabase/migrations/` in filename order (`001`, then `002`). This creates the tables, security rules (RLS), colour-aware order and stock functions, audit log and the two Storage buckets (`product-images`, public; `payment-receipts`, private).
+2. Open **SQL Editor → New query**. Run every file in `supabase/migrations/` in filename order (`001`, `002`, then `003`). This creates the tables, security rules (RLS), colour-aware order and stock functions, customer delivery reviews, audit log and the two Storage buckets (`product-images`, public; `payment-receipts`, private).
 3. Optional: run [supabase/seed.sql](supabase/seed.sql) to load the 32 sample products (10 units of stock per size). Edit or replace these with your real stock before launch.
 4. Go to **Project Settings → API** and copy:
    - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`

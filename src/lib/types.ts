@@ -53,6 +53,10 @@ export type Order = {
     'bank_name' | 'bank_account_name' | 'bank_account_number' | 'bank_branch'
   > | null;
   status: 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled';
+  received_at: string | null;
+  review_rating: number | null;
+  review_text: string | null;
+  review_created_at: string | null;
   created_at: string;
   items: {
     id: string;

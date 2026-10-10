@@ -3,18 +3,28 @@ import { ArrowUpRight, Plus } from 'lucide-react';
 import { requireStaff } from '@/lib/auth';
 import { createClient } from '@/lib/supabase/server';
 import { getProducts } from '@/lib/data';
-import { money, date, orderNumber, visibleVariants } from '@/lib/utils';
+import { money, date, isMissingOrderReviewSchema, orderNumber, visibleVariants } from '@/lib/utils';
 export default async function Page() {
   await requireStaff();
   const db = await createClient();
-  const [products, { data: orders, error }] = await Promise.all([
+  const [products, initialOrders] = await Promise.all([
     getProducts(true),
     db
       .from('orders')
-      .select('id,total,status,payment_status,created_at,customer_name')
+      .select('id,total,status,payment_status,created_at,customer_name,received_at')
       .order('created_at', { ascending: false })
       .limit(200),
   ]);
+  let { data: orders, error } = initialOrders;
+  if (isMissingOrderReviewSchema(error)) {
+    const legacy = await db
+      .from('orders')
+      .select('id,total,status,payment_status,created_at,customer_name')
+      .order('created_at', { ascending: false })
+      .limit(200);
+    orders = legacy.data?.map((order) => ({ ...order, received_at: null })) ?? null;
+    error = legacy.error;
+  }
   if (error) throw new Error('Orders could not be loaded.');
   const recent = orders || [];
   return (
@@ -86,7 +96,11 @@ export default async function Page() {
                       <span className={`status-badge ${o.payment_status}`}>{o.payment_status}</span>
                     </td>
                     <td>{money(o.total)}</td>
-                    <td>{o.status}</td>
+                    <td>
+                      <span className={`status-badge ${o.received_at ? 'received' : o.status}`}>
+                        {o.received_at ? 'received' : o.status}
+                      </span>
+                    </td>
                   </tr>
                 ))}
               </tbody>

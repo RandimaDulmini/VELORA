@@ -1,7 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { checkoutSchema, productSchema, variantsSchema } from '../src/lib/schemas';
-import { safeNext, shippingFee, visibleVariants } from '../src/lib/utils';
+import {
+  checkoutSchema,
+  orderReviewSchema,
+  productSchema,
+  variantsSchema,
+} from '../src/lib/schemas';
+import {
+  isMissingOrderReviewSchema,
+  safeNext,
+  shippingFee,
+  visibleVariants,
+} from '../src/lib/utils';
 import { MAX_IMAGE_BYTES, validateImageUpload } from '../src/lib/uploads';
 const valid = {
   items: [{ variant_id: '10000000-0000-4000-8000-000000000001', quantity: 1 }],
@@ -38,6 +48,16 @@ test('client supplied totals are not included in checkout payload', () => {
   assert(!('total' in parsed));
   assert(!('shipping_fee' in parsed));
 });
+test('order receipt reviews require a rating and a short written review', () => {
+  const review = {
+    order_id: '20000000-0000-4000-8000-000000000001',
+    rating: '5',
+    review: 'Everything arrived safely.',
+  };
+  assert(orderReviewSchema.safeParse(review).success);
+  assert(!orderReviewSchema.safeParse({ ...review, rating: '6' }).success);
+  assert(!orderReviewSchema.safeParse({ ...review, review: '  ' }).success);
+});
 test('variants accept colours and reject duplicate colour-size options or invalid inventory', () => {
   assert(
     variantsSchema.safeParse([
@@ -67,6 +87,11 @@ test('default colour is hidden when named colours exist but retained for colourl
   const black = { ...fallback, id: '10000000-0000-4000-8000-000000000002', color: 'Black' };
   assert.deepEqual(visibleVariants({ variants: [fallback, black] }), [black]);
   assert.deepEqual(visibleVariants({ variants: [fallback] }), [fallback]);
+});
+test('missing order review database fields are detected for compatibility queries', () => {
+  assert(isMissingOrderReviewSchema({ code: '42703', message: 'column does not exist' }));
+  assert(isMissingOrderReviewSchema({ message: 'orders.received_at was not found' }));
+  assert(!isMissingOrderReviewSchema({ code: '42501', message: 'permission denied' }));
 });
 test('sale prices must be below original price', () => {
   const p = {

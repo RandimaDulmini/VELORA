@@ -54,6 +54,11 @@ export const variantsSchema = z
         .size === rows.length,
     'Each colour and size combination must be unique.',
   );
+export const orderReviewSchema = z.object({
+  order_id: z.uuid(),
+  rating: z.coerce.number().int().min(1).max(5),
+  review: z.string().trim().min(3, 'Please write a short review.').max(1000),
+});
 export const settingsSchema = z.object({
   shipping_fee: z.coerce.number().min(0).max(100000),
   free_shipping_threshold: z.coerce.number().min(0).max(10000000),

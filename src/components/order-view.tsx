@@ -3,7 +3,12 @@ import { CheckCircle2, Clock, Package, Truck, ArrowUpRight } from 'lucide-react'
 import type { Order } from '@/lib/types';
 import { date, money, orderNumber } from '@/lib/utils';
 import { ActionForm } from './action-form';
-import { uploadReceipt, reviewPayment, changeOrderStatus } from '@/app/actions/store';
+import {
+  uploadReceipt,
+  reviewPayment,
+  changeOrderStatus,
+  confirmOrderReceived,
+} from '@/app/actions/store';
 import { ImageUpload } from './image-upload';
 export function OrderView({
   order: o,
@@ -16,6 +21,7 @@ export function OrderView({
 }) {
   const steps = ['pending', 'confirmed', 'shipped', 'delivered'];
   const current = steps.indexOf(o.status);
+  const receivedFeatureEnabled = typeof o.received_at !== 'undefined';
   return (
     <>
       <div className="order-title">
@@ -25,7 +31,9 @@ export function OrderView({
             Order <em>{orderNumber(o.id)}</em>
           </h1>
         </div>
-        <span className={`status-badge ${o.status}`}>{o.status}</span>
+        <span className={`status-badge ${o.received_at ? 'received' : o.status}`}>
+          {o.received_at ? 'received' : o.status}
+        </span>
       </div>
       {o.status !== 'cancelled' && (
         <div className="order-timeline">
@@ -34,12 +42,14 @@ export function OrderView({
               {i === 0 ? <Clock /> : i === 1 ? <CheckCircle2 /> : i === 2 ? <Truck /> : <Package />}
               <span>
                 {s === 'pending'
-                  ? 'Order received'
+                  ? 'Order placed'
                   : s === 'confirmed'
                     ? 'Confirmed'
                     : s === 'shipped'
                       ? 'On its way'
-                      : 'Delivered'}
+                      : o.received_at
+                        ? 'Delivered & received'
+                        : 'Delivered'}
               </span>
             </div>
           ))}
@@ -73,7 +83,11 @@ export function OrderView({
               </span>
             </p>
             {o.payment_method === 'cod' ? (
-              <p>Please have {money(o.total)} ready when your order arrives.</p>
+              <p>
+                {o.payment_status === 'paid'
+                  ? `Payment of ${money(o.total)} was collected.`
+                  : `Please have ${money(o.total)} ready when your order arrives.`}
+              </p>
             ) : (
               <>
                 {o.payment_status === 'paid' ? (
@@ -163,6 +177,67 @@ export function OrderView({
               </>
             )}
           </section>
+          {receivedFeatureEnabled &&
+            !admin &&
+            !o.received_at &&
+            ['shipped', 'delivered'].includes(o.status) && (
+              <section className="panel order-received-panel">
+                <span className="eyebrow">DELIVERY</span>
+                <h2>Have you received your order?</h2>
+                <p className="muted">
+                  Confirm delivery and tell us about your experience. This will mark the order as
+                  delivered and received.
+                </p>
+                <ActionForm
+                  action={confirmOrderReceived}
+                  submit="Order received"
+                  pendingLabel="Confirming…"
+                  className="order-review-form"
+                >
+                  <input type="hidden" name="order_id" value={o.id} />
+                  <label>
+                    Rating
+                    <select name="rating" required defaultValue="">
+                      <option value="" disabled>
+                        Choose a rating
+                      </option>
+                      <option value="5">5 — Excellent</option>
+                      <option value="4">4 — Good</option>
+                      <option value="3">3 — Satisfactory</option>
+                      <option value="2">2 — Could be better</option>
+                      <option value="1">1 — Poor</option>
+                    </select>
+                  </label>
+                  <label>
+                    Your review
+                    <textarea
+                      name="review"
+                      required
+                      minLength={3}
+                      maxLength={1000}
+                      rows={4}
+                      placeholder="Tell us about the products and delivery."
+                    />
+                  </label>
+                </ActionForm>
+              </section>
+            )}
+          {receivedFeatureEnabled && o.received_at && (
+            <section className="panel order-review">
+              <span className="eyebrow">{admin ? 'CUSTOMER REVIEW' : 'THANK YOU'}</span>
+              <h2>Order received</h2>
+              <p className="muted">Confirmed on {date(o.received_at)}</p>
+              <p
+                className="review-stars"
+                aria-label={`${o.review_rating} out of 5 stars`}
+                title={`${o.review_rating} out of 5 stars`}
+              >
+                {'★'.repeat(o.review_rating || 0)}
+                <span>{'★'.repeat(5 - (o.review_rating || 0))}</span>
+              </p>
+              <blockquote>{o.review_text}</blockquote>
+            </section>
+          )}
           {admin && (
             <section className="panel">
               <h2>Fulfilment</h2>

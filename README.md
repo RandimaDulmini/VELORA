@@ -42,7 +42,7 @@ Open **http://localhost:3000**. You can browse the demo immediately. Set the var
 ## 2. Set up Supabase
 
 1. Create a Supabase project in a region appropriate for your customers, for example Singapore.
-2. Open **SQL Editor** and run the files in `supabase/migrations/` in filename order (`001`, then `002`). They create the tables, functions, RLS policies, audit trail, colour-aware inventory and Storage buckets.
+2. Open **SQL Editor** and run the files in `supabase/migrations/` in filename order (`001`, `002`, then `003`). They create the tables, functions, RLS policies, audit trail, colour-aware inventory, customer delivery reviews and Storage buckets.
 3. Optionally run [supabase/seed.sql](supabase/seed.sql) for the catalogue from your HTML. **The seed uses sample stock of 10 units per size. Review real products, prices, descriptions, photographs, sizes and inventory before opening.** Nine products without embedded photos use a neutral illustrated placeholder.
 4. Copy your project URL and **publishable key** from the project API settings into `.env.local`. A service-role secret is not used by this application.
 

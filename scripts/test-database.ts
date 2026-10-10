@@ -393,15 +393,33 @@ await check(
       ).rows[0].payment_status,
       'pending',
     );
-    await db.query("select public.update_order_status($1,'delivered')", [id]);
-    assert.equal(
-      (
-        await db.query<{ payment_status: string }>(
-          'select payment_status from public.orders where id=$1',
-          [id],
-        )
-      ).rows[0].payment_status,
-      'paid',
+    await asUser(customer);
+    await mustFail(
+      () => db.query("select public.confirm_order_received($1,5,'Not my order')", [id]),
+      /Invalid order/,
+    );
+    await asUser(other);
+    await db.query("select public.confirm_order_received($1,5,'Everything arrived safely')", [id]);
+    const received = (
+      await db.query<{
+        status: string;
+        payment_status: string;
+        received_at: string;
+        review_rating: number;
+        review_text: string;
+      }>(
+        'select status,payment_status,received_at,review_rating,review_text from public.orders where id=$1',
+        [id],
+      )
+    ).rows[0];
+    assert.equal(received.status, 'delivered');
+    assert.equal(received.payment_status, 'paid');
+    assert(received.received_at);
+    assert.equal(received.review_rating, 5);
+    assert.equal(received.review_text, 'Everything arrived safely');
+    await mustFail(
+      () => db.query("select public.confirm_order_received($1,4,'Trying twice')", [id]),
+      /already been received/,
     );
   },
 );
