@@ -30,5 +30,10 @@ export default defineConfig({
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: {
+      ...process.env,
+      // Storefront tests use the bundled catalogue and never depend on a developer's live database.
+      VELORA_SAMPLE_MODE: '1',
+    },
   },
 });

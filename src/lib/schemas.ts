@@ -37,12 +37,18 @@ export const variantsSchema = z
   .array(
     z.object({
       size: z.string().trim().min(1).max(20),
+      color: z.string().trim().min(1).max(50),
       stock: z.coerce.number().int().min(0).max(100000),
     }),
   )
   .min(1)
-  .max(20)
-  .refine((rows) => new Set(rows.map((r) => r.size)).size === rows.length, 'Sizes must be unique.');
+  .max(100)
+  .refine(
+    (rows) =>
+      new Set(rows.map((r) => `${r.color.toLocaleLowerCase()}\u0000${r.size.toLocaleLowerCase()}`))
+        .size === rows.length,
+    'Each colour and size combination must be unique.',
+  );
 export const settingsSchema = z.object({
   shipping_fee: z.coerce.number().min(0).max(100000),
   free_shipping_threshold: z.coerce.number().min(0).max(10000000),

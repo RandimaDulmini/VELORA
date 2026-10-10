@@ -6,9 +6,15 @@ import type { Product } from '@/lib/types';
 import { money } from '@/lib/utils';
 import { useStore } from './store-provider';
 export function ProductDetail({ product: p }: { product: Product }) {
+  const colors = [...new Set(p.variants.map((variant) => variant.color || 'Default'))];
+  const [color, setColor] = useState(colors.length === 1 ? colors[0] : '');
   const [size, setSize] = useState('');
   const [error, setError] = useState('');
   const { add, wishlist, toggleWish } = useStore();
+  const variants = color
+    ? p.variants.filter((variant) => (variant.color || 'Default') === color)
+    : [];
+  const showColors = colors.length > 1 || colors[0] !== 'Default';
   return (
     <div className="product-detail">
       <div className="detail-photo">
@@ -24,6 +30,34 @@ export function ProductDetail({ product: p }: { product: Product }) {
           {money(p.price)} {p.compare_at_price && <s>{money(p.compare_at_price)}</s>}
         </div>
         <p className="detail-description">{p.description}</p>
+        {showColors && (
+          <>
+            <div className="size-label">
+              <span>Select your colour {color && `— ${color}`}</span>
+            </div>
+            <div className="size-options large" role="group" aria-label="Available colours">
+              {colors.map((option) => (
+                <button
+                  key={option}
+                  disabled={
+                    !p.variants.some(
+                      (variant) => (variant.color || 'Default') === option && variant.stock > 0,
+                    )
+                  }
+                  aria-pressed={color === option}
+                  className={color === option ? 'active' : ''}
+                  onClick={() => {
+                    setColor(option);
+                    setSize('');
+                    setError('');
+                  }}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
         <div className="size-label">
           <span>Select your size {size && `— ${size}`}</span>
           <Link href="/info/size-guide">
@@ -31,7 +65,7 @@ export function ProductDetail({ product: p }: { product: Product }) {
           </Link>
         </div>
         <div className="size-options large">
-          {p.variants.map((v) => (
+          {variants.map((v) => (
             <button
               key={v.id}
               disabled={!v.stock}
@@ -47,20 +81,26 @@ export function ProductDetail({ product: p }: { product: Product }) {
           ))}
         </div>
         <p className="muted small">
-          {size
-            ? `${p.variants.find((v) => v.size === size)?.stock} available in this size`
-            : 'Select a size to check availability.'}
+          {!color
+            ? 'Select a colour to see available sizes.'
+            : size
+              ? `${variants.find((v) => v.size === size)?.stock} available in this option`
+              : 'Select a size to check availability.'}
         </p>
         <div className="detail-actions">
           <button
             className="button"
             disabled={p.variants.every((v) => !v.stock)}
             onClick={() => {
+              if (!color) {
+                setError('Please choose your colour first.');
+                return;
+              }
               if (!size) {
                 setError('Please choose your size first.');
                 return;
               }
-              add(p, size);
+              add(p, size, color);
             }}
           >
             {p.variants.every((v) => !v.stock) ? 'Sold out' : 'Add to bag'}

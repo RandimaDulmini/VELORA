@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { authAction } from '@/app/actions/auth';
 import { ActionForm } from './action-form';
 export function AuthForm({
@@ -15,6 +16,11 @@ export function AuthForm({
   const [mode, setMode] = useState(
     initialMode === 'update' ? 'update' : initialMode === 'forgot' ? 'forgot' : 'login',
   );
+  const [showPassword, setShowPassword] = useState(false);
+  const changeMode = (nextMode: string) => {
+    setShowPassword(false);
+    setMode(nextMode);
+  };
   return (
     <div className="auth-layout">
       <div className="auth-art">
@@ -85,14 +91,25 @@ export function AuthForm({
           {mode !== 'forgot' && (
             <label>
               Password
-              <input
-                name="password"
-                type="password"
-                required
-                minLength={12}
-                maxLength={128}
-                autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
-              />
+              <div className="password-field">
+                <input
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  minLength={mode === 'login' ? 1 : 12}
+                  maxLength={128}
+                  autoComplete={mode === 'login' ? 'current-password' : 'new-password'}
+                />
+                <button
+                  type="button"
+                  className="password-toggle"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-pressed={showPassword}
+                  onClick={() => setShowPassword((visible) => !visible)}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
               {mode !== 'login' && <small>At least 12 characters.</small>}
             </label>
           )}
@@ -106,12 +123,12 @@ export function AuthForm({
         <div className="auth-switch">
           {mode === 'login' ? (
             <>
-              <button onClick={() => setMode('forgot')} className="text-link">
+              <button onClick={() => changeMode('forgot')} className="text-link">
                 Forgot your password?
               </button>
               <p>
                 New to VELORA?{' '}
-                <button onClick={() => setMode('register')} className="text-link">
+                <button onClick={() => changeMode('register')} className="text-link">
                   Create an account
                 </button>
               </p>
@@ -121,7 +138,7 @@ export function AuthForm({
               Go to your account
             </Link>
           ) : (
-            <button onClick={() => setMode('login')} className="text-link">
+            <button onClick={() => changeMode('login')} className="text-link">
               Back to sign in
             </button>
           )}

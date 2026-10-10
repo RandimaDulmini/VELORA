@@ -8,10 +8,12 @@ export function Bag({ settings, products }: { settings: StoreSettings; products:
   const { bag, update, ready } = useStore();
   const items = bag.map((i) => {
     const p = products.find((p) => p.id === i.productId);
+    const variant = p?.variants.find((v) => v.id === i.variantId);
     return {
       ...i,
       price: p?.price ?? i.price,
-      stock: p?.variants.find((v) => v.id === i.variantId)?.stock ?? 0,
+      color: variant?.color || i.color,
+      stock: variant?.stock ?? 0,
     };
   });
   const subtotal = items.reduce((n, i) => n + i.price * i.quantity, 0);
@@ -48,6 +50,7 @@ export function Bag({ settings, products }: { settings: StoreSettings; products:
                 <div>
                   <h3>{i.name}</h3>
                   <p>Size: {i.size}</p>
+                  {i.color && i.color !== 'Default' && <p>Colour: {i.color}</p>}
                   <strong>{money(i.price)}</strong>
                   {i.stock < i.quantity && (
                     <p className="form-error">

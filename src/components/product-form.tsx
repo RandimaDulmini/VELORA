@@ -9,10 +9,10 @@ export function ProductForm({ product: p }: { product?: Product }) {
   const [name, setName] = useState(p?.name || '');
   const [slug, setSlug] = useState(p?.slug || '');
   const [variants, setVariants] = useState(
-    p?.variants.map((v) => ({ size: v.size, stock: v.stock })) || [
-      { size: 'S', stock: 0 },
-      { size: 'M', stock: 0 },
-      { size: 'L', stock: 0 },
+    p?.variants.map((v) => ({ color: v.color || 'Default', size: v.size, stock: v.stock })) || [
+      { color: 'Black', size: 'S', stock: 0 },
+      { color: 'Black', size: 'M', stock: 0 },
+      { color: 'Black', size: 'L', stock: 0 },
     ],
   );
   return (
@@ -138,14 +138,29 @@ export function ProductForm({ product: p }: { product?: Product }) {
           </p>
         </section>
         <section className="panel span-2">
-          <h2>Sizes & inventory</h2>
+          <h2>Colours, sizes & inventory</h2>
           <p className="muted">
-            Enter the physical units currently available. Saving replaces the stock count for each
-            size.
+            Add one row for every colour and size combination. Saving replaces the stock count for
+            each option.
           </p>
           <div className="variant-grid">
             {variants.map((v, i) => (
               <div className="variant-row" key={i}>
+                <label>
+                  Colour
+                  <input
+                    required
+                    aria-label={`Colour ${i + 1}`}
+                    value={v.color}
+                    maxLength={50}
+                    placeholder="e.g. Black"
+                    onChange={(e) =>
+                      setVariants((rows) =>
+                        rows.map((r, j) => (j === i ? { ...r, color: e.target.value } : r)),
+                      )
+                    }
+                  />
+                </label>
                 <label>
                   Size
                   <input
@@ -181,7 +196,7 @@ export function ProductForm({ product: p }: { product?: Product }) {
                   className="icon-button"
                   disabled={variants.length === 1}
                   onClick={() => setVariants((rows) => rows.filter((_, j) => j !== i))}
-                  aria-label={`Remove size ${v.size}`}
+                  aria-label={`Remove ${v.color} size ${v.size}`}
                 >
                   <Trash2 size={17} />
                 </button>
@@ -191,14 +206,20 @@ export function ProductForm({ product: p }: { product?: Product }) {
           <button
             className="text-link"
             type="button"
-            disabled={variants.length >= 20}
-            onClick={() => setVariants((rows) => [...rows, { size: '', stock: 0 }])}
+            disabled={variants.length >= 100}
+            onClick={() =>
+              setVariants((rows) => [
+                ...rows,
+                { color: rows.at(-1)?.color || '', size: '', stock: 0 },
+              ])
+            }
           >
             <Plus size={15} />
-            Add size
+            Add colour / size
           </button>
           <p className="small muted">
-            Removing an existing size sets its stock to zero so previous orders keep their records.
+            Removing an existing option sets its stock to zero so previous orders keep their
+            records.
           </p>
         </section>
       </div>

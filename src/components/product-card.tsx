@@ -13,9 +13,15 @@ export function ProductCard({
   priority?: boolean;
 }) {
   const { wishlist, toggleWish, add } = useStore();
+  const colors = [...new Set(p.variants.map((variant) => variant.color || 'Default'))];
+  const [color, setColor] = useState(colors.length === 1 ? colors[0] : '');
   const [size, setSize] = useState('');
   const [error, setError] = useState('');
   const soldOut = p.variants.every((v) => v.stock === 0);
+  const variants = color
+    ? p.variants.filter((variant) => (variant.color || 'Default') === color)
+    : [];
+  const showColors = colors.length > 1 || colors[0] !== 'Default';
   return (
     <article className="product-card">
       <div className="product-image">
@@ -51,9 +57,30 @@ export function ProductCard({
         <div className="product-price">
           {money(p.price)} {p.compare_at_price && <s>{money(p.compare_at_price)}</s>}
         </div>
+        {showColors && (
+          <label className="card-color">
+            Colour
+            <select
+              aria-label={`Colour for ${p.name}`}
+              value={color}
+              onChange={(event) => {
+                setColor(event.target.value);
+                setSize('');
+                setError('');
+              }}
+            >
+              <option value="">Choose colour</option>
+              {colors.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
         <p className="card-availability">Available sizes: tap to choose</p>
         <div className="card-sizes" role="group" aria-label={`Sizes for ${p.name}`}>
-          {p.variants.map((v) => (
+          {variants.map((v) => (
             <button
               key={v.id}
               disabled={!v.stock}
@@ -77,11 +104,15 @@ export function ProductCard({
           className="card-order"
           disabled={soldOut}
           onClick={() => {
+            if (!color) {
+              setError('Please choose a colour first.');
+              return;
+            }
             if (!size) {
               setError('Please choose a size first.');
               return;
             }
-            add(p, size);
+            add(p, size, color);
             setError('');
           }}
         >

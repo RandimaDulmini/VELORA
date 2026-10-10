@@ -38,14 +38,21 @@ test('client supplied totals are not included in checkout payload', () => {
   assert(!('total' in parsed));
   assert(!('shipping_fee' in parsed));
 });
-test('variants reject duplicate sizes and invalid inventory', () => {
+test('variants accept colours and reject duplicate colour-size options or invalid inventory', () => {
   assert(
-    !variantsSchema.safeParse([
-      { size: 'M', stock: 1 },
-      { size: 'M', stock: 2 },
+    variantsSchema.safeParse([
+      { color: 'Black', size: 'M', stock: 1 },
+      { color: 'White', size: 'M', stock: 2 },
     ]).success,
   );
-  assert(!variantsSchema.safeParse([{ size: 'M', stock: -1 }]).success);
+  assert(
+    !variantsSchema.safeParse([
+      { color: 'Black', size: 'M', stock: 1 },
+      { color: 'black', size: 'm', stock: 2 },
+    ]).success,
+  );
+  assert(!variantsSchema.safeParse([{ color: 'Black', size: 'M', stock: -1 }]).success);
+  assert(!variantsSchema.safeParse([{ color: '', size: 'M', stock: 1 }]).success);
 });
 test('sale prices must be below original price', () => {
   const p = {
