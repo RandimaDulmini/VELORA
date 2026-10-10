@@ -1,0 +1,9 @@
+node_modules
+.next
+test-results
+docs/previews
+public
+src/data
+supabase
+VELORA _ Online Clothing Store (4).html
+package-lock.json

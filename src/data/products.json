@@ -1,0 +1,1238 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "slug": "rose-satin-wrap-dress",
+    "name": "Rose Satin Wrap Dress",
+    "category": "women",
+    "price": 8900,
+    "compare_at_price": null,
+    "description": "Meet the Rose Satin Wrap Dress. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/rose-satin-wrap-dress.jpg",
+    "image_position": "center 30%",
+    "featured": true,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-01T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000001",
+        "product_id": "00000000-0000-4000-8000-000000000001",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000002",
+        "product_id": "00000000-0000-4000-8000-000000000001",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000003",
+        "product_id": "00000000-0000-4000-8000-000000000001",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000002",
+    "slug": "linen-co-ord-set",
+    "name": "Linen Co-ord Set",
+    "category": "women",
+    "price": 11500,
+    "compare_at_price": 13500,
+    "description": "Meet the Linen Co-ord Set. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Sets",
+    "image_url": "/images/linen-co-ord-set.jpg",
+    "image_position": "center 45%",
+    "featured": true,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-02T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000011",
+        "product_id": "00000000-0000-4000-8000-000000000002",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000012",
+        "product_id": "00000000-0000-4000-8000-000000000002",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000013",
+        "product_id": "00000000-0000-4000-8000-000000000002",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000014",
+        "product_id": "00000000-0000-4000-8000-000000000002",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000015",
+        "product_id": "00000000-0000-4000-8000-000000000002",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000003",
+    "slug": "blush-pleated-skirt",
+    "name": "Blush Pleated Skirt",
+    "category": "women",
+    "price": 4800,
+    "compare_at_price": null,
+    "description": "Meet the Blush Pleated Skirt. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/blush-pleated-skirt.jpg",
+    "image_position": "center 50%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-03T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000021",
+        "product_id": "00000000-0000-4000-8000-000000000003",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000022",
+        "product_id": "00000000-0000-4000-8000-000000000003",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000023",
+        "product_id": "00000000-0000-4000-8000-000000000003",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000004",
+    "slug": "floral-summer-blouse",
+    "name": "Floral Summer Blouse",
+    "category": "women",
+    "price": 3900,
+    "compare_at_price": 4900,
+    "description": "Meet the Floral Summer Blouse. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/floral-summer-blouse.jpg",
+    "image_position": "center 35%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-04T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000031",
+        "product_id": "00000000-0000-4000-8000-000000000004",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000032",
+        "product_id": "00000000-0000-4000-8000-000000000004",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000033",
+        "product_id": "00000000-0000-4000-8000-000000000004",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000034",
+        "product_id": "00000000-0000-4000-8000-000000000004",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000005",
+    "slug": "lilac-maxi-kurta",
+    "name": "Lilac Maxi Kurta",
+    "category": "women",
+    "price": 7200,
+    "compare_at_price": null,
+    "description": "Meet the Lilac Maxi Kurta. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/lilac-maxi-kurta.jpg",
+    "image_position": "center 40%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-05T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000041",
+        "product_id": "00000000-0000-4000-8000-000000000005",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000042",
+        "product_id": "00000000-0000-4000-8000-000000000005",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000043",
+        "product_id": "00000000-0000-4000-8000-000000000005",
+        "size": "XL",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000044",
+        "product_id": "00000000-0000-4000-8000-000000000005",
+        "size": "XXL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000006",
+    "slug": "classic-oxford-shirt",
+    "name": "Classic Oxford Shirt",
+    "category": "men",
+    "price": 5600,
+    "compare_at_price": null,
+    "description": "Meet the Classic Oxford Shirt. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/classic-oxford-shirt.jpg",
+    "image_position": "center 30%",
+    "featured": true,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-06T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000051",
+        "product_id": "00000000-0000-4000-8000-000000000006",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000052",
+        "product_id": "00000000-0000-4000-8000-000000000006",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000053",
+        "product_id": "00000000-0000-4000-8000-000000000006",
+        "size": "XL",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000054",
+        "product_id": "00000000-0000-4000-8000-000000000006",
+        "size": "XXL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000007",
+    "slug": "slim-chino-trousers",
+    "name": "Slim Chino Trousers",
+    "category": "men",
+    "price": 6900,
+    "compare_at_price": null,
+    "description": "Meet the Slim Chino Trousers. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-07T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000061",
+        "product_id": "00000000-0000-4000-8000-000000000007",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000062",
+        "product_id": "00000000-0000-4000-8000-000000000007",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000063",
+        "product_id": "00000000-0000-4000-8000-000000000007",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000008",
+    "slug": "washed-denim-jacket",
+    "name": "Washed Denim Jacket",
+    "category": "men",
+    "price": 12900,
+    "compare_at_price": 15900,
+    "description": "Meet the Washed Denim Jacket. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Layers",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-08T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000071",
+        "product_id": "00000000-0000-4000-8000-000000000008",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000072",
+        "product_id": "00000000-0000-4000-8000-000000000008",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000009",
+    "slug": "graphic-tee-oversized",
+    "name": "Graphic Tee Oversized",
+    "category": "teen",
+    "price": 2900,
+    "compare_at_price": null,
+    "description": "Meet the Graphic Tee Oversized. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/graphic-tee-oversized.jpg",
+    "image_position": "center 40%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-09T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000081",
+        "product_id": "00000000-0000-4000-8000-000000000009",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000082",
+        "product_id": "00000000-0000-4000-8000-000000000009",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000083",
+        "product_id": "00000000-0000-4000-8000-000000000009",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000010",
+    "slug": "pastel-hoodie",
+    "name": "Pastel Hoodie",
+    "category": "teen",
+    "price": 6400,
+    "compare_at_price": null,
+    "description": "Meet the Pastel Hoodie. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/pastel-hoodie.jpg",
+    "image_position": "center 45%",
+    "featured": true,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-10T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000091",
+        "product_id": "00000000-0000-4000-8000-000000000010",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000092",
+        "product_id": "00000000-0000-4000-8000-000000000010",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000093",
+        "product_id": "00000000-0000-4000-8000-000000000010",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000094",
+        "product_id": "00000000-0000-4000-8000-000000000010",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000011",
+    "slug": "high-waist-mom-jeans",
+    "name": "High-Waist Mom Jeans",
+    "category": "teen",
+    "price": 7800,
+    "compare_at_price": 9200,
+    "description": "Meet the High-Waist Mom Jeans. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-11T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000101",
+        "product_id": "00000000-0000-4000-8000-000000000011",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000102",
+        "product_id": "00000000-0000-4000-8000-000000000011",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000103",
+        "product_id": "00000000-0000-4000-8000-000000000011",
+        "size": "M",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000012",
+    "slug": "little-sunshine-frock",
+    "name": "Little Sunshine Frock",
+    "category": "kids",
+    "price": 3400,
+    "compare_at_price": null,
+    "description": "Meet the Little Sunshine Frock. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-12T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000111",
+        "product_id": "00000000-0000-4000-8000-000000000012",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000112",
+        "product_id": "00000000-0000-4000-8000-000000000012",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000113",
+        "product_id": "00000000-0000-4000-8000-000000000012",
+        "size": "M",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000013",
+    "slug": "kids-cotton-pyjama-set",
+    "name": "Kids Cotton Pyjama Set",
+    "category": "kids",
+    "price": 2800,
+    "compare_at_price": 3500,
+    "description": "Meet the Kids Cotton Pyjama Set. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Sets",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-13T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000121",
+        "product_id": "00000000-0000-4000-8000-000000000013",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000122",
+        "product_id": "00000000-0000-4000-8000-000000000013",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000123",
+        "product_id": "00000000-0000-4000-8000-000000000013",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000124",
+        "product_id": "00000000-0000-4000-8000-000000000013",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000014",
+    "slug": "woven-tote-bag",
+    "name": "Woven Tote Bag",
+    "category": "accessories",
+    "price": 3600,
+    "compare_at_price": null,
+    "description": "Meet the Woven Tote Bag. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Accessories",
+    "image_url": "/images/woven-tote-bag.jpg",
+    "image_position": "center 55%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-14T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000131",
+        "product_id": "00000000-0000-4000-8000-000000000014",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000132",
+        "product_id": "00000000-0000-4000-8000-000000000014",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000133",
+        "product_id": "00000000-0000-4000-8000-000000000014",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000134",
+        "product_id": "00000000-0000-4000-8000-000000000014",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000135",
+        "product_id": "00000000-0000-4000-8000-000000000014",
+        "size": "XL",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000136",
+        "product_id": "00000000-0000-4000-8000-000000000014",
+        "size": "XXL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000015",
+    "slug": "silk-hair-scrunchie-trio",
+    "name": "Silk Hair Scrunchie Trio",
+    "category": "accessories",
+    "price": 400,
+    "compare_at_price": null,
+    "description": "Meet the Silk Hair Scrunchie Trio. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Accessories",
+    "image_url": "/images/silk-hair-scrunchie-trio.jpg",
+    "image_position": "center 55%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-15T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000141",
+        "product_id": "00000000-0000-4000-8000-000000000015",
+        "size": "M",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000016",
+    "slug": "denim-edit-wide-leg-jeans",
+    "name": "Denim Edit Wide-Leg Jeans",
+    "category": "women",
+    "price": 8400,
+    "compare_at_price": 10500,
+    "description": "Meet the Denim Edit Wide-Leg Jeans. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/denim-edit-wide-leg-jeans.jpg",
+    "image_position": "center 62%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-16T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000151",
+        "product_id": "00000000-0000-4000-8000-000000000016",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000152",
+        "product_id": "00000000-0000-4000-8000-000000000016",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000153",
+        "product_id": "00000000-0000-4000-8000-000000000016",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000017",
+    "slug": "chiffon-party-gown",
+    "name": "Chiffon Party Gown",
+    "category": "women",
+    "price": 14500,
+    "compare_at_price": null,
+    "description": "Meet the Chiffon Party Gown. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/chiffon-party-gown.jpg",
+    "image_position": "center 35%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-17T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000161",
+        "product_id": "00000000-0000-4000-8000-000000000017",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000162",
+        "product_id": "00000000-0000-4000-8000-000000000017",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000163",
+        "product_id": "00000000-0000-4000-8000-000000000017",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000164",
+        "product_id": "00000000-0000-4000-8000-000000000017",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000018",
+    "slug": "ribbed-knit-crop-top",
+    "name": "Ribbed Knit Crop Top",
+    "category": "women",
+    "price": 2600,
+    "compare_at_price": null,
+    "description": "Meet the Ribbed Knit Crop Top. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/ribbed-knit-crop-top.jpg",
+    "image_position": "center 25%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-18T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000171",
+        "product_id": "00000000-0000-4000-8000-000000000018",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000172",
+        "product_id": "00000000-0000-4000-8000-000000000018",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000173",
+        "product_id": "00000000-0000-4000-8000-000000000018",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000174",
+        "product_id": "00000000-0000-4000-8000-000000000018",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000019",
+    "slug": "pleated-palazzo-pants",
+    "name": "Pleated Palazzo Pants",
+    "category": "women",
+    "price": 5200,
+    "compare_at_price": 6400,
+    "description": "Meet the Pleated Palazzo Pants. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/pleated-palazzo-pants.jpg",
+    "image_position": "center 62%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-19T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000181",
+        "product_id": "00000000-0000-4000-8000-000000000019",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000182",
+        "product_id": "00000000-0000-4000-8000-000000000019",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000183",
+        "product_id": "00000000-0000-4000-8000-000000000019",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000184",
+        "product_id": "00000000-0000-4000-8000-000000000019",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000020",
+    "slug": "cotton-printed-kurti",
+    "name": "Cotton Printed Kurti",
+    "category": "women",
+    "price": 4300,
+    "compare_at_price": null,
+    "description": "Meet the Cotton Printed Kurti. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/cotton-printed-kurti.jpg",
+    "image_position": "center 45%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-20T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000191",
+        "product_id": "00000000-0000-4000-8000-000000000020",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000192",
+        "product_id": "00000000-0000-4000-8000-000000000020",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000193",
+        "product_id": "00000000-0000-4000-8000-000000000020",
+        "size": "XL",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000194",
+        "product_id": "00000000-0000-4000-8000-000000000020",
+        "size": "XXL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000021",
+    "slug": "quilted-knit-cardigan",
+    "name": "Quilted Knit Cardigan",
+    "category": "women",
+    "price": 8700,
+    "compare_at_price": null,
+    "description": "Meet the Quilted Knit Cardigan. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Layers",
+    "image_url": "/images/quilted-knit-cardigan.jpg",
+    "image_position": "center 30%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-21T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000201",
+        "product_id": "00000000-0000-4000-8000-000000000021",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000202",
+        "product_id": "00000000-0000-4000-8000-000000000021",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000203",
+        "product_id": "00000000-0000-4000-8000-000000000021",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000022",
+    "slug": "linen-short-sleeve-shirt",
+    "name": "Linen Short-Sleeve Shirt",
+    "category": "men",
+    "price": 4900,
+    "compare_at_price": null,
+    "description": "Meet the Linen Short-Sleeve Shirt. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/linen-short-sleeve-shirt.jpg",
+    "image_position": "center 35%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-22T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000211",
+        "product_id": "00000000-0000-4000-8000-000000000022",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000212",
+        "product_id": "00000000-0000-4000-8000-000000000022",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000213",
+        "product_id": "00000000-0000-4000-8000-000000000022",
+        "size": "XL",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000214",
+        "product_id": "00000000-0000-4000-8000-000000000022",
+        "size": "XXL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000023",
+    "slug": "cargo-shorts",
+    "name": "Cargo Shorts",
+    "category": "men",
+    "price": 4200,
+    "compare_at_price": 5200,
+    "description": "Meet the Cargo Shorts. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-23T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000221",
+        "product_id": "00000000-0000-4000-8000-000000000023",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000222",
+        "product_id": "00000000-0000-4000-8000-000000000023",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000223",
+        "product_id": "00000000-0000-4000-8000-000000000023",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000024",
+    "slug": "polo-t-shirt",
+    "name": "Polo T-Shirt",
+    "category": "men",
+    "price": 3200,
+    "compare_at_price": null,
+    "description": "Meet the Polo T-Shirt. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/polo-t-shirt.jpg",
+    "image_position": "center 40%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-24T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000231",
+        "product_id": "00000000-0000-4000-8000-000000000024",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000232",
+        "product_id": "00000000-0000-4000-8000-000000000024",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000233",
+        "product_id": "00000000-0000-4000-8000-000000000024",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000234",
+        "product_id": "00000000-0000-4000-8000-000000000024",
+        "size": "XL",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000235",
+        "product_id": "00000000-0000-4000-8000-000000000024",
+        "size": "XXL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000025",
+    "slug": "bomber-jacket",
+    "name": "Bomber Jacket",
+    "category": "men",
+    "price": 13800,
+    "compare_at_price": null,
+    "description": "Meet the Bomber Jacket. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Layers",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-25T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000241",
+        "product_id": "00000000-0000-4000-8000-000000000025",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000242",
+        "product_id": "00000000-0000-4000-8000-000000000025",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000243",
+        "product_id": "00000000-0000-4000-8000-000000000025",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000026",
+    "slug": "crop-tank-top",
+    "name": "Crop Tank Top",
+    "category": "teen",
+    "price": 1900,
+    "compare_at_price": null,
+    "description": "Meet the Crop Tank Top. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Tops",
+    "image_url": "/images/crop-tank-top.jpg",
+    "image_position": "center 45%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-26T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000251",
+        "product_id": "00000000-0000-4000-8000-000000000026",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000252",
+        "product_id": "00000000-0000-4000-8000-000000000026",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000253",
+        "product_id": "00000000-0000-4000-8000-000000000026",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000254",
+        "product_id": "00000000-0000-4000-8000-000000000026",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000027",
+    "slug": "pleated-mini-skirt",
+    "name": "Pleated Mini Skirt",
+    "category": "teen",
+    "price": 3600,
+    "compare_at_price": null,
+    "description": "Meet the Pleated Mini Skirt. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Bottoms",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-27T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000261",
+        "product_id": "00000000-0000-4000-8000-000000000027",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000262",
+        "product_id": "00000000-0000-4000-8000-000000000027",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000263",
+        "product_id": "00000000-0000-4000-8000-000000000027",
+        "size": "M",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000028",
+    "slug": "varsity-jacket",
+    "name": "Varsity Jacket",
+    "category": "teen",
+    "price": 9800,
+    "compare_at_price": 11900,
+    "description": "Meet the Varsity Jacket. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Layers",
+    "image_url": "/images/product-placeholder.svg",
+    "image_position": "center",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-09-28T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000271",
+        "product_id": "00000000-0000-4000-8000-000000000028",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000272",
+        "product_id": "00000000-0000-4000-8000-000000000028",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000273",
+        "product_id": "00000000-0000-4000-8000-000000000028",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000029",
+    "slug": "kids-denim-dungarees",
+    "name": "Kids Denim Dungarees",
+    "category": "kids",
+    "price": 4100,
+    "compare_at_price": null,
+    "description": "Meet the Kids Denim Dungarees. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/kids-denim-dungarees.jpg",
+    "image_position": "center 45%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-29T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000281",
+        "product_id": "00000000-0000-4000-8000-000000000029",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000282",
+        "product_id": "00000000-0000-4000-8000-000000000029",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000283",
+        "product_id": "00000000-0000-4000-8000-000000000029",
+        "size": "M",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000030",
+    "slug": "kids-party-dress",
+    "name": "Kids Party Dress",
+    "category": "kids",
+    "price": 4700,
+    "compare_at_price": null,
+    "description": "Meet the Kids Party Dress. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Dresses & kurtas",
+    "image_url": "/images/kids-party-dress.jpg",
+    "image_position": "center 40%",
+    "featured": false,
+    "is_new": true,
+    "active": true,
+    "created_at": "2026-09-30T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000291",
+        "product_id": "00000000-0000-4000-8000-000000000030",
+        "size": "XS",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000292",
+        "product_id": "00000000-0000-4000-8000-000000000030",
+        "size": "S",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000293",
+        "product_id": "00000000-0000-4000-8000-000000000030",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000294",
+        "product_id": "00000000-0000-4000-8000-000000000030",
+        "size": "L",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000031",
+    "slug": "silk-scarf",
+    "name": "Silk Scarf",
+    "category": "accessories",
+    "price": 2300,
+    "compare_at_price": null,
+    "description": "Meet the Silk Scarf. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Accessories",
+    "image_url": "/images/silk-scarf.jpg",
+    "image_position": "center 45%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-10-01T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000301",
+        "product_id": "00000000-0000-4000-8000-000000000031",
+        "size": "M",
+        "stock": 10
+      }
+    ]
+  },
+  {
+    "id": "00000000-0000-4000-8000-000000000032",
+    "slug": "leather-belt",
+    "name": "Leather Belt",
+    "category": "accessories",
+    "price": 2700,
+    "compare_at_price": null,
+    "description": "Meet the Leather Belt. An effortless addition to your everyday wardrobe, selected for the VELORA collection. Choose your usual size or contact us for help finding your fit.",
+    "clothing_type": "Accessories",
+    "image_url": "/images/leather-belt.jpg",
+    "image_position": "center 45%",
+    "featured": false,
+    "is_new": false,
+    "active": true,
+    "created_at": "2026-10-02T00:00:00.000Z",
+    "variants": [
+      {
+        "id": "10000000-0000-4000-8000-000000000311",
+        "product_id": "00000000-0000-4000-8000-000000000032",
+        "size": "M",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000312",
+        "product_id": "00000000-0000-4000-8000-000000000032",
+        "size": "L",
+        "stock": 10
+      },
+      {
+        "id": "10000000-0000-4000-8000-000000000313",
+        "product_id": "00000000-0000-4000-8000-000000000032",
+        "size": "XL",
+        "stock": 10
+      }
+    ]
+  }
+]
