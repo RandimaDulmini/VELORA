@@ -25,6 +25,7 @@ test('catalogue filters, price sorting and empty state work', async ({ page }) =
   await expect(page.locator('.product-card')).toHaveCount(8);
   await page.getByRole('textbox', { name: 'Search the store', exact: true }).fill('Rose Satin');
   await page.getByRole('button', { name: 'Submit search' }).click();
+  await page.waitForLoadState('networkidle');
   await expect(page.locator('.product-card')).toHaveCount(1);
   const card = page.locator('.product-card');
   await card.getByRole('button', { name: 'Add to bag' }).click();
@@ -69,7 +70,14 @@ test('admin routes require authentication and preview never fakes sign-in', asyn
   await page.goto('/admin/team');
   await expect(page).toHaveURL(/auth/);
   await page.getByRole('textbox', { name: 'Email address' }).fill('sample@example.com');
-  await page.getByLabel('Password', { exact: true }).fill('not-a-real-password');
+  const password = page.getByLabel('Password', { exact: true });
+  await password.fill('not-a-real-password');
+  await expect(password).toHaveAttribute('type', 'password');
+  await page.getByRole('button', { name: 'Show password' }).click();
+  await expect(password).toHaveAttribute('type', 'text');
+  await expect(password).toHaveValue('not-a-real-password');
+  await page.getByRole('button', { name: 'Hide password' }).click();
+  await expect(password).toHaveAttribute('type', 'password');
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await expect(page.locator('.form-error[role="alert"]')).toContainText('connected to Supabase');
 });

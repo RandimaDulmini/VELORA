@@ -42,7 +42,7 @@ Open **http://localhost:3000**. You can browse the demo immediately. Set the var
 ## 2. Set up Supabase
 
 1. Create a Supabase project in a region appropriate for your customers, for example Singapore.
-2. Open **SQL Editor** and run [supabase/migrations/001_store.sql](supabase/migrations/001_store.sql) once. It creates the tables, functions, RLS policies, audit trail and Storage buckets.
+2. Open **SQL Editor** and run the files in `supabase/migrations/` in filename order (`001`, then `002`). They create the tables, functions, RLS policies, audit trail, colour-aware inventory and Storage buckets.
 3. Optionally run [supabase/seed.sql](supabase/seed.sql) for the catalogue from your HTML. **The seed uses sample stock of 10 units per size. Review real products, prices, descriptions, photographs, sizes and inventory before opening.** Nine products without embedded photos use a neutral illustrated placeholder.
 4. Copy your project URL and **publishable key** from the project API settings into `.env.local`. A service-role secret is not used by this application.
 
@@ -188,7 +188,7 @@ The database suite executes the actual migration and seed in embedded PostgreSQL
 - `src/lib/` — validated schemas, Supabase server client, access checks and data queries.
 - `src/data/products.json` — preview-only catalogue; live mode reads Supabase and never falls back to sample data on a database error.
 - `public/images/` — assets extracted from your original HTML, plus a placeholder illustration.
-- `supabase/migrations/001_store.sql` — database, RLS, transactional business functions and private/public buckets.
+- `supabase/migrations/` — ordered database migrations for RLS, transactional business functions, colour-aware inventory and private/public buckets.
 - `supabase/seed.sql` — optional sample catalogue.
 - `supabase/bootstrap-super-admin.sql` — one-time owner bootstrap.
 - `tests/`, `scripts/test-database.ts` — validation, database security and browser checks.

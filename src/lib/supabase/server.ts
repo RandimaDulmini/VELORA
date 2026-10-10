@@ -1,7 +1,13 @@
 import 'server-only';
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-export function isConfigured() { return !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY); }
+export function isConfigured() {
+  return !!(
+    process.env.VELORA_SAMPLE_MODE !== '1' &&
+    process.env.NEXT_PUBLIC_SUPABASE_URL &&
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+  );
+}
 export async function createClient() {
   if (!isConfigured()) throw new Error('Connect Supabase to enable accounts and checkout.');
   const jar = await cookies();

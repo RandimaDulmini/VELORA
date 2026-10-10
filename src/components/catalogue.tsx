@@ -2,7 +2,7 @@
 import { useMemo, useState, type CSSProperties } from 'react';
 import { Search, X } from 'lucide-react';
 import { ProductCard } from './product-card';
-import { categories } from '@/lib/utils';
+import { categories, visibleVariants } from '@/lib/utils';
 import type { Product } from '@/lib/types';
 const inCategory = (p: Product, key: string) =>
   key === 'all' ||
@@ -30,7 +30,9 @@ export function Catalogue({
   const [perPage, setPerPage] = useState(12);
   const [columns, setColumns] = useState(3);
   const clothingTypes = [...new Set(products.map((p) => p.clothing_type))];
-  const availableSizes = [...new Set(products.flatMap((p) => p.variants.map((v) => v.size)))];
+  const availableSizes = [
+    ...new Set(products.flatMap((p) => visibleVariants(p).map((v) => v.size))),
+  ];
   const filtered = useMemo(
     () =>
       products
@@ -38,7 +40,8 @@ export function Catalogue({
           (p) =>
             inCategory(p, category) &&
             `${p.name} ${p.category}`.toLowerCase().includes(search.toLowerCase()) &&
-            (!sizes.length || p.variants.some((v) => sizes.includes(v.size) && v.stock > 0)) &&
+            (!sizes.length ||
+              visibleVariants(p).some((v) => sizes.includes(v.size) && v.stock > 0)) &&
             (!types.length || types.includes(p.clothing_type)) &&
             (price === 'all' ||
               (price === 'under'

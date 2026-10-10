@@ -6,6 +6,7 @@ type BagItem = {
   productId: string;
   name: string;
   size: string;
+  color?: string;
   price: number;
   image: string;
   quantity: number;
@@ -14,7 +15,7 @@ type StoreContextType = {
   bag: BagItem[];
   wishlist: string[];
   ready: boolean;
-  add: (p: Product, size: string) => void;
+  add: (p: Product, size: string, color?: string) => void;
   update: (id: string, quantity: number) => void;
   clear: () => void;
   toggleWish: (id: string) => void;
@@ -65,8 +66,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       return () => clearTimeout(timer);
     }
   }, [notice]);
-  function add(p: Product, size: string) {
-    const variant = p.variants.find((v) => v.size === size);
+  function add(p: Product, size: string, color = 'Default') {
+    const variant = p.variants.find((v) => v.size === size && (v.color || 'Default') === color);
     if (!variant || variant.stock < 1) return;
     const old = bag.find((i) => i.variantId === variant.id);
     if (old && old.quantity >= Math.min(10, variant.stock)) {
@@ -88,6 +89,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
               productId: p.id,
               name: p.name,
               size,
+              color: variant.color,
               price: p.price,
               image: p.image_url,
               quantity: 1,

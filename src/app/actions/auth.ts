@@ -22,8 +22,14 @@ export async function authAction(_: ActionResult, form: FormData): Promise<Actio
       success: 'If an account exists, a password reset link has been sent. Check your email.',
     };
   }
-  if (password.length < 12 || password.length > 128)
-    return { error: 'Use a password between 12 and 128 characters.' };
+  if (password.length > 128 || (mode !== 'login' && password.length < 12))
+    return {
+      error:
+        mode === 'login'
+          ? 'Password must be 128 characters or fewer.'
+          : 'Use a password between 12 and 128 characters.',
+    };
+  if (mode === 'login' && !password) return { error: 'Enter your password.' };
   if (mode === 'update') {
     const {
       data: { user },

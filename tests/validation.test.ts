@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { checkoutSchema, productSchema, variantsSchema } from '../src/lib/schemas';
-import { safeNext, shippingFee } from '../src/lib/utils';
+import { safeNext, shippingFee, visibleVariants } from '../src/lib/utils';
 import { MAX_IMAGE_BYTES, validateImageUpload } from '../src/lib/uploads';
 const valid = {
   items: [{ variant_id: '10000000-0000-4000-8000-000000000001', quantity: 1 }],
@@ -38,14 +38,35 @@ test('client supplied totals are not included in checkout payload', () => {
   assert(!('total' in parsed));
   assert(!('shipping_fee' in parsed));
 });
-test('variants reject duplicate sizes and invalid inventory', () => {
+test('variants accept colours and reject duplicate colour-size options or invalid inventory', () => {
   assert(
-    !variantsSchema.safeParse([
-      { size: 'M', stock: 1 },
-      { size: 'M', stock: 2 },
+    variantsSchema.safeParse([
+      { color: 'Black', size: 'M', stock: 1 },
+      { color: 'White', size: 'M', stock: 2 },
     ]).success,
   );
-  assert(!variantsSchema.safeParse([{ size: 'M', stock: -1 }]).success);
+  assert(
+    !variantsSchema.safeParse([
+      { color: 'Black', size: 'M', stock: 1 },
+      { color: 'black', size: 'm', stock: 2 },
+    ]).success,
+  );
+  assert(!variantsSchema.safeParse([{ color: 'Black', size: 'M', stock: -1 }]).success);
+  const withoutColor = variantsSchema.parse([{ color: '', size: 'M', stock: 1 }]);
+  assert.equal(withoutColor[0].color, 'Default');
+  assert.equal(variantsSchema.parse([{ size: 'S', stock: 2 }])[0].color, 'Default');
+});
+test('default colour is hidden when named colours exist but retained for colourless products', () => {
+  const fallback = {
+    id: '10000000-0000-4000-8000-000000000001',
+    product_id: '00000000-0000-4000-8000-000000000001',
+    color: 'Default',
+    size: 'M',
+    stock: 0,
+  };
+  const black = { ...fallback, id: '10000000-0000-4000-8000-000000000002', color: 'Black' };
+  assert.deepEqual(visibleVariants({ variants: [fallback, black] }), [black]);
+  assert.deepEqual(visibleVariants({ variants: [fallback] }), [fallback]);
 });
 test('sale prices must be below original price', () => {
   const p = {

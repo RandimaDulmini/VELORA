@@ -143,7 +143,7 @@ export async function saveProduct(_: ActionResult, form: FormData): Promise<Acti
   try {
     raw = JSON.parse(String(form.get('variants')));
   } catch {
-    return { error: 'Invalid size data.' };
+    return { error: 'Invalid inventory data.' };
   }
   const variants = variantsSchema.safeParse(raw);
   if (!variants.success) return { error: variants.error.issues[0].message };

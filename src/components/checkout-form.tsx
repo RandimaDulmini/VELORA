@@ -219,7 +219,8 @@ export function CheckoutForm({
             <div>
               <strong>{i.name}</strong>
               <span>
-                Size {i.size} · Qty {i.quantity}
+                {i.color && i.color !== 'Default' ? `${i.color} · ` : ''}Size {i.size} · Qty{' '}
+                {i.quantity}
               </span>
             </div>
             <span>

@@ -1,5 +1,5 @@
 import { PGlite } from '@electric-sql/pglite';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import assert from 'node:assert/strict';
 
 // Execute the real migration against embedded PostgreSQL. Supabase-owned schemas are stubbed only.
@@ -17,7 +17,10 @@ await db.exec(`
   grant select,insert on storage.objects to authenticated;
   create function storage.foldername(text) returns text[] language sql as $$ select string_to_array($1,'/'); $$;
 `);
-await db.exec(readFileSync('supabase/migrations/001_store.sql', 'utf8'));
+for (const migration of readdirSync('supabase/migrations')
+  .filter((file) => file.endsWith('.sql'))
+  .sort())
+  await db.exec(readFileSync(`supabase/migrations/${migration}`, 'utf8'));
 await db.exec(readFileSync('supabase/seed.sql', 'utf8'));
 const customer = '20000000-0000-4000-8000-000000000001';
 const other = '20000000-0000-4000-8000-000000000002';
@@ -120,6 +123,12 @@ await check('order totals come from the database and stock is reserved once', as
     ).rows[0].stock,
     8,
   );
+  const item = (
+    await db.query<{ color: string }>('select color from public.order_items where order_id=$1', [
+      order,
+    ])
+  ).rows[0];
+  assert.equal(item.color, 'Default');
 });
 await check('overselling and duplicate variants roll back without changing inventory', async () => {
   await mustFail(() => place('cod', [{ variant_id: variant, quantity: 10 }]), /stock/);
@@ -319,7 +328,7 @@ await check(
       () =>
         db.query('select public.save_product(null,$1::jsonb,$2::jsonb)', [
           JSON.stringify(product),
-          JSON.stringify([{ size: 'M', stock: 3 }]),
+          JSON.stringify([{ color: 'Navy', size: 'M', stock: 3 }]),
         ]),
       /Staff access/,
     );
@@ -327,7 +336,7 @@ await check(
     const id = (
       await db.query<{ id: string }>('select public.save_product(null,$1::jsonb,$2::jsonb) id', [
         JSON.stringify(product),
-        JSON.stringify([{ size: 'M', stock: 3 }]),
+        JSON.stringify([{ color: 'Navy', size: 'M', stock: 3 }]),
       ])
     ).rows[0].id;
     await mustFail(
@@ -335,9 +344,9 @@ await check(
         db.query('select public.save_product($1,$2::jsonb,$3::jsonb)', [
           id,
           JSON.stringify({ ...product, price: 1 }),
-          JSON.stringify([{ size: 'M', stock: -1 }]),
+          JSON.stringify([{ color: 'Navy', size: 'M', stock: -1 }]),
         ]),
-      /check constraint/,
+      /Invalid colour, size, or stock/,
     );
     assert.equal(
       Number(
@@ -349,7 +358,7 @@ await check(
     await db.query('select public.save_product($1,$2::jsonb,$3::jsonb)', [
       id,
       JSON.stringify({ ...product, active: false }),
-      JSON.stringify([{ size: 'M', stock: 3 }]),
+      JSON.stringify([{ color: 'Navy', size: 'M', stock: 3 }]),
     ]);
     await asUser(customer);
     assert.equal(

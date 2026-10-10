@@ -55,7 +55,8 @@ export function OrderView({
                 <div>
                   <h3>{i.product_name}</h3>
                   <p>
-                    Size {i.size} · Quantity {i.quantity}
+                    {i.color && i.color !== 'Default' ? `${i.color} · ` : ''}Size {i.size} ·
+                    Quantity {i.quantity}
                   </p>
                 </div>
                 <strong>{money(i.unit_price * i.quantity)}</strong>
