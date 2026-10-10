@@ -147,6 +147,18 @@ Official references: [Vercel Next.js deployment](https://vercel.com/docs/framewo
 
 ## Validation
 
+### GitHub Actions
+
+[`.github/workflows/test-website.yml`](.github/workflows/test-website.yml) runs automatically on pushes and pull requests. You can also run **Actions → Test website → Run workflow** after the workflow is on the repository's default branch. No GitHub secrets are required.
+
+The job installs the lockfile dependencies with Node.js 22, runs the validation and isolated PostgreSQL tests, builds the production app, checks TypeScript, installs Chromium with Linux dependencies, and runs Playwright against the production server. Desktop and mobile Chromium checks cover all sample product pages, category pages, public information/account-entry pages, shopping flows, protected-page redirects, image loading, responsive overflow and 404s. This is viewport testing with Chromium, not a separate Safari test.
+
+Download **website-test-results** from the workflow run's **Artifacts** section. It contains an HTML report (`playwright-report/index.html`), JUnit results, full-page screenshots of the main public pages and a sample product, plus screenshots/videos/traces for failed tests. Reports are retained for 14 days. To explore the downloaded report locally, run `npx playwright show-report <path-to-playwright-report>`.
+
+CI deliberately uses the preview catalogue and an isolated PGlite database. It never writes to your production Supabase project. It tests the database business rules and access restrictions, but authenticated admin/customer screens, real receipt uploads, SMTP and Supabase's HTTP services still require the live acceptance checks below. There is no deployment or automatic publishing in this workflow. The setup follows the [Playwright CI guide](https://playwright.dev/docs/ci).
+
+### Run the checks locally
+
 ```powershell
 npm run typecheck
 npm test
