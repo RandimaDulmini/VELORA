@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { MessageCircle } from 'lucide-react';
-export function Footer() {
+import type { StoreSettings } from '@/lib/types';
+export function Footer({ settings }: { settings: StoreSettings }) {
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, '');
   const email = process.env.NEXT_PUBLIC_SUPPORT_EMAIL;
   return (
@@ -21,17 +22,21 @@ export function Footer() {
           <Link href="/info/delivery">Delivery & exchange details</Link>
         </div>
         <nav aria-label="Customer help">
-          <Link href="/info/size-guide">Size guide</Link>
-          <Link href="/account">My orders</Link>
-          {wa ? (
-            <a href={`https://wa.me/${wa}`} target="_blank" rel="noopener noreferrer">
-              Order help: WhatsApp us
-            </a>
-          ) : email ? (
-            <a href={`mailto:${email}`}>Email us for order help</a>
-          ) : (
-            <Link href="/info/contact">Contact us</Link>
+          {settings.footer_size_guide_enabled && (
+            <Link href="/info/size-guide">{settings.footer_size_guide_label}</Link>
           )}
+          {settings.footer_orders_enabled && (
+            <Link href="/account">{settings.footer_orders_label}</Link>
+          )}
+          {settings.footer_contact_enabled && wa ? (
+            <a href={`https://wa.me/${wa}`} target="_blank" rel="noopener noreferrer">
+              {settings.footer_contact_label}
+            </a>
+          ) : settings.footer_contact_enabled && email ? (
+            <a href={`mailto:${email}`}>{settings.footer_contact_label}</a>
+          ) : settings.footer_contact_enabled ? (
+            <Link href="/info/contact">{settings.footer_contact_label}</Link>
+          ) : null}
         </nav>
         <div className="footer-legal">
           <span>© {new Date().getFullYear()} VELORA. All rights reserved.</span>

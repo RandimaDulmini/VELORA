@@ -1326,11 +1326,15 @@ input[type='radio'] {
   accent-color: var(--bronze);
 }
 .form-grid > label,
+.footer-link-setting > label:first-child,
 .auth-form label,
 .panel form label,
 .product-form label {
   font-size: 11px;
   color: var(--muted);
+}
+.footer-link-setting .check-line {
+  margin: 12px 0 0;
 }
 label > input:not([type='checkbox']):not([type='radio']),
 label > textarea,

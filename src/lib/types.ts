@@ -30,6 +30,12 @@ export type StoreSettings = {
   bank_account_number: string;
   bank_branch: string;
   bank_transfer_enabled: boolean;
+  footer_size_guide_enabled: boolean;
+  footer_size_guide_label: string;
+  footer_orders_enabled: boolean;
+  footer_orders_label: string;
+  footer_contact_enabled: boolean;
+  footer_contact_label: string;
 };
 export type Order = {
   id: string;

@@ -209,8 +209,26 @@ await check('bank transfers need real configured details', async () => {
       bank_account_number: '123456789',
       bank_branch: 'Colombo',
       bank_transfer_enabled: true,
+      footer_size_guide_enabled: true,
+      footer_size_guide_label: 'Find your size',
+      footer_orders_enabled: true,
+      footer_orders_label: 'Track my orders',
+      footer_contact_enabled: false,
+      footer_contact_label: 'Talk to us',
     }),
   ]);
+  const footer = (
+    await db.query<{
+      footer_size_guide_label: string;
+      footer_orders_label: string;
+      footer_contact_enabled: boolean;
+    }>(
+      'select footer_size_guide_label,footer_orders_label,footer_contact_enabled from public.store_settings where id=true',
+    )
+  ).rows[0];
+  assert.equal(footer.footer_size_guide_label, 'Find your size');
+  assert.equal(footer.footer_orders_label, 'Track my orders');
+  assert.equal(footer.footer_contact_enabled, false);
 });
 let bankOrder = '';
 let receipt = '';

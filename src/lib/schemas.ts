@@ -68,4 +68,10 @@ export const settingsSchema = z.object({
   bank_account_number: z.string().max(50),
   bank_branch: z.string().max(100),
   bank_transfer_enabled: z.boolean(),
+  footer_size_guide_enabled: z.boolean(),
+  footer_size_guide_label: z.string().trim().min(1).max(40),
+  footer_orders_enabled: z.boolean(),
+  footer_orders_label: z.string().trim().min(1).max(40),
+  footer_contact_enabled: z.boolean(),
+  footer_contact_label: z.string().trim().min(1).max(40),
 });

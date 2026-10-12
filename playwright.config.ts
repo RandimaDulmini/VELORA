@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+const port = Number(process.env.PLAYWRIGHT_PORT || 3000);
 export default defineConfig({
   testDir: './tests/browser',
   fullyParallel: true,
@@ -16,7 +17,7 @@ export default defineConfig({
       ]
     : [['list'], ['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://localhost:${port}`,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
@@ -26,8 +27,8 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['iPhone 13'], defaultBrowserType: 'chromium' } },
   ],
   webServer: {
-    command: 'npm run start',
-    url: 'http://localhost:3000',
+    command: `npm run start -- --port ${port}`,
+    url: `http://localhost:${port}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: {

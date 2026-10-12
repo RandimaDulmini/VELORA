@@ -5,6 +5,10 @@ test('home renders original branding and working collection links', async ({ pag
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Soft colours, made to be worn.' })).toBeVisible();
   await expect(page.getByText('Store preview · Sample catalogue')).toBeVisible();
+  const footer = page.getByRole('contentinfo');
+  await expect(footer.getByRole('link', { name: 'Size guide' })).toBeVisible();
+  await expect(footer.getByRole('link', { name: 'My orders' })).toBeVisible();
+  await expect(footer.getByRole('link', { name: 'Contact us' })).toBeVisible();
   await page.getByRole('link', { name: 'Shop new arrivals' }).click();
   await expect(page).toHaveURL(/shop\?category=new/);
   await expect(page.locator('.product-card').first()).toBeVisible();

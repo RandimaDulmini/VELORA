@@ -3,6 +3,7 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { StoreProvider } from '@/components/store-provider';
 import { getViewer } from '@/lib/auth';
+import { getPublicSettings } from '@/lib/data';
 import { isConfigured } from '@/lib/supabase/server';
 import './globals.css';
 import './reference-theme.css';
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
   },
 };
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const viewer = await getViewer();
+  const [viewer, settings] = await Promise.all([getViewer(), getPublicSettings()]);
   return (
     <html lang="en">
       <head>
@@ -42,7 +43,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             </div>
           )}
           <main id="main">{children}</main>
-          <Footer />
+          <Footer settings={settings} />
         </StoreProvider>
       </body>
     </html>

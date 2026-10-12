@@ -81,6 +81,71 @@ export default async function Page() {
               at checkout.
             </p>
           </section>
+          <section className="panel span-2">
+            <h2>Customer footer links</h2>
+            <p className="muted">
+              Choose which customer links appear in the footer and how their labels are displayed.
+            </p>
+            <div className="form-grid">
+              <div className="footer-link-setting">
+                <label>
+                  Size guide label
+                  <input
+                    name="footer_size_guide_label"
+                    required
+                    maxLength={40}
+                    defaultValue={s.footer_size_guide_label}
+                  />
+                </label>
+                <label className="check-line">
+                  <input
+                    name="footer_size_guide_enabled"
+                    type="checkbox"
+                    defaultChecked={s.footer_size_guide_enabled}
+                  />
+                  Show in footer
+                </label>
+              </div>
+              <div className="footer-link-setting">
+                <label>
+                  Orders label
+                  <input
+                    name="footer_orders_label"
+                    required
+                    maxLength={40}
+                    defaultValue={s.footer_orders_label}
+                  />
+                </label>
+                <label className="check-line">
+                  <input
+                    name="footer_orders_enabled"
+                    type="checkbox"
+                    defaultChecked={s.footer_orders_enabled}
+                  />
+                  Show in footer
+                </label>
+              </div>
+              <div className="footer-link-setting">
+                <label>
+                  Contact label
+                  <input
+                    name="footer_contact_label"
+                    required
+                    maxLength={40}
+                    defaultValue={s.footer_contact_label}
+                  />
+                </label>
+                <label className="check-line">
+                  <input
+                    name="footer_contact_enabled"
+                    type="checkbox"
+                    defaultChecked={s.footer_contact_enabled}
+                  />
+                  Show in footer
+                </label>
+              </div>
+            </div>
+          </section>
         </div>
       </ActionForm>
     </>

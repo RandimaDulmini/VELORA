@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getSettings } from '@/lib/data';
+import { getPublicSettings } from '@/lib/data';
 import { money } from '@/lib/utils';
 const titles: Record<string, string> = {
   delivery: 'Delivery & exchanges',
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   if (!titles[slug]) notFound();
-  const s = await getSettings();
+  const s = await getPublicSettings();
   const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, '');
   const email = process.env.NEXT_PUBLIC_SUPPORT_EMAIL;
   return (

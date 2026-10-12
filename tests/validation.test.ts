@@ -4,6 +4,7 @@ import {
   checkoutSchema,
   orderReviewSchema,
   productSchema,
+  settingsSchema,
   variantsSchema,
 } from '../src/lib/schemas';
 import {
@@ -156,6 +157,26 @@ test('free delivery threshold includes the exact boundary', () => {
   assert.equal(shippingFee(14999, settings), 450);
   assert.equal(shippingFee(15000, settings), 0);
   assert.equal(shippingFee(20000, settings), 0);
+});
+test('store footer settings require safe labels and explicit visibility choices', () => {
+  const settings = {
+    shipping_fee: 450,
+    free_shipping_threshold: 15000,
+    bank_name: '',
+    bank_account_name: '',
+    bank_account_number: '',
+    bank_branch: '',
+    bank_transfer_enabled: false,
+    footer_size_guide_enabled: true,
+    footer_size_guide_label: 'Size guide',
+    footer_orders_enabled: true,
+    footer_orders_label: 'My orders',
+    footer_contact_enabled: false,
+    footer_contact_label: 'Contact us',
+  };
+  assert(settingsSchema.safeParse(settings).success);
+  assert(!settingsSchema.safeParse({ ...settings, footer_contact_label: '' }).success);
+  assert(!settingsSchema.safeParse({ ...settings, footer_orders_label: 'x'.repeat(41) }).success);
 });
 test('receipt and product uploads reject oversized files and unsupported formats before submission', () => {
   assert.equal(validateImageUpload({ size: MAX_IMAGE_BYTES, type: 'image/jpeg' }), '');
