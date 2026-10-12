@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { PRODUCT_SIZES } from './sizes';
 export const shippingSchema = z.object({
   name: z.string().trim().min(2).max(100),
   phone: z.string().regex(/^(0\d{9}|\+94\d{9})$/, 'Use 07XXXXXXXX or +947XXXXXXXX.'),
@@ -36,7 +37,7 @@ export const productSchema = z
 export const variantsSchema = z
   .array(
     z.object({
-      size: z.string().trim().min(1).max(20),
+      size: z.enum(PRODUCT_SIZES),
       color: z
         .string()
         .trim()

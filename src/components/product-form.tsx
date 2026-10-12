@@ -5,6 +5,7 @@ import { ActionForm } from './action-form';
 import { saveProduct } from '@/app/actions/store';
 import type { Product } from '@/lib/types';
 import { ImageUpload } from './image-upload';
+import { PRODUCT_SIZES, compareProductSizes } from '@/lib/sizes';
 export function ProductForm({ product: p }: { product?: Product }) {
   const [name, setName] = useState(p?.name || '');
   const [slug, setSlug] = useState(p?.slug || '');
@@ -15,7 +16,8 @@ export function ProductForm({ product: p }: { product?: Product }) {
       color: v.color === 'Default' ? '' : v.color || '',
       size: v.size,
       stock: v.stock,
-    }));
+    }))
+    .sort((a, b) => compareProductSizes(a.size, b.size));
   const [variants, setVariants] = useState(
     existingVariants?.length
       ? existingVariants
@@ -178,17 +180,25 @@ export function ProductForm({ product: p }: { product?: Product }) {
                 </label>
                 <label>
                   <span className="variant-field-label">Size</span>
-                  <input
+                  <select
                     required
                     aria-label={`Size ${i + 1}`}
                     value={v.size}
-                    maxLength={20}
                     onChange={(e) =>
                       setVariants((rows) =>
                         rows.map((r, j) => (j === i ? { ...r, size: e.target.value } : r)),
                       )
                     }
-                  />
+                  >
+                    <option value="" disabled>
+                      Choose size
+                    </option>
+                    {PRODUCT_SIZES.map((size) => (
+                      <option key={size} value={size}>
+                        {size}
+                      </option>
+                    ))}
+                  </select>
                 </label>
                 <label>
                   <span className="variant-field-label">Stock</span>

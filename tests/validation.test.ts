@@ -13,6 +13,7 @@ import {
   visibleVariants,
 } from '../src/lib/utils';
 import { MAX_IMAGE_BYTES, validateImageUpload } from '../src/lib/uploads';
+import { PRODUCT_SIZES, compareProductSizes } from '../src/lib/sizes';
 const valid = {
   items: [{ variant_id: '10000000-0000-4000-8000-000000000001', quantity: 1 }],
   shipping: {
@@ -75,6 +76,33 @@ test('variants accept colours and reject duplicate colour-size options or invali
   const withoutColor = variantsSchema.parse([{ color: '', size: 'M', stock: 1 }]);
   assert.equal(withoutColor[0].color, 'Default');
   assert.equal(variantsSchema.parse([{ size: 'S', stock: 2 }])[0].color, 'Default');
+  assert(!variantsSchema.safeParse([{ size: 'One size', stock: 2 }]).success);
+});
+test('product sizes have one shared smallest-to-largest order', () => {
+  assert.deepEqual(PRODUCT_SIZES, ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
+  assert.deepEqual(['XL', 'XXS', 'M', 'XXXL', 'S'].sort(compareProductSizes), [
+    'XXS',
+    'S',
+    'M',
+    'XL',
+    'XXXL',
+  ]);
+  const variant = {
+    id: '10000000-0000-4000-8000-000000000001',
+    product_id: '00000000-0000-4000-8000-000000000001',
+    color: 'Default',
+    stock: 1,
+  };
+  assert.deepEqual(
+    visibleVariants({
+      variants: [
+        { ...variant, id: '10000000-0000-4000-8000-000000000003', size: 'XL' },
+        { ...variant, id: '10000000-0000-4000-8000-000000000002', size: 'S' },
+        { ...variant, size: 'XXS' },
+      ],
+    }).map(({ size }) => size),
+    ['XXS', 'S', 'XL'],
+  );
 });
 test('default colour is hidden when named colours exist but retained for colourless products', () => {
   const fallback = {
