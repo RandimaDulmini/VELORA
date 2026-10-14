@@ -256,12 +256,23 @@ export async function confirmOrderReceived(_: ActionResult, form: FormData): Pro
 }
 export async function saveSettings(_: ActionResult, form: FormData): Promise<ActionResult> {
   await requireStaff(true);
+  const sizes = form.getAll('size_chart_size');
+  const busts = form.getAll('size_chart_bust');
+  const waists = form.getAll('size_chart_waist');
+  const hips = form.getAll('size_chart_hips');
+  const sizeGuideChart = sizes.map((size, index) => ({
+    size,
+    bust: busts[index],
+    waist: waists[index],
+    hips: hips[index],
+  }));
   const parsed = settingsSchema.safeParse({
     ...Object.fromEntries(form),
     bank_transfer_enabled: form.get('bank_transfer_enabled') === 'on',
     footer_size_guide_enabled: form.get('footer_size_guide_enabled') === 'on',
     footer_orders_enabled: form.get('footer_orders_enabled') === 'on',
     footer_contact_enabled: form.get('footer_contact_enabled') === 'on',
+    size_guide_chart: sizeGuideChart,
   });
   if (!parsed.success) return { error: parsed.error.issues[0].message };
   const { error } = await (

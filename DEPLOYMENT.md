@@ -48,7 +48,7 @@ git push origin main
 ## 2. Create the Supabase project
 
 1. **New project** at https://supabase.com/dashboard. Choose a region close to your customers (for Sri Lanka, **Singapore** or **Mumbai**) and save the database password.
-2. Open **SQL Editor → New query**. Run every file in `supabase/migrations/` in filename order (`001`, `002`, then `003`). This creates the tables, security rules (RLS), colour-aware order and stock functions, customer delivery reviews, audit log and the two Storage buckets (`product-images`, public; `payment-receipts`, private).
+2. Open **SQL Editor → New query**. Run every file in `supabase/migrations/` in filename order (`001` through `005`). This creates the tables, security rules (RLS), colour-aware order and stock functions, customer delivery reviews, editable footer information, audit log and the two Storage buckets (`product-images`, public; `payment-receipts`, private).
 3. Optional: run [supabase/seed.sql](supabase/seed.sql) to load the 32 sample products (10 units of stock per size). Edit or replace these with your real stock before launch.
 4. Go to **Project Settings → API** and copy:
    - **Project URL** → `NEXT_PUBLIC_SUPABASE_URL`
@@ -89,8 +89,6 @@ git push origin main
    | `NEXT_PUBLIC_SUPABASE_URL` | `https://xxxx.supabase.co` |
    | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | your publishable key |
    | `NEXT_PUBLIC_SITE_URL` | `https://your-project.vercel.app` (or your custom domain) |
-   | `NEXT_PUBLIC_WHATSAPP_NUMBER` | digits only, e.g. `94771234567` (optional) |
-   | `NEXT_PUBLIC_SUPPORT_EMAIL` | `support@yourdomain.com` (optional) |
 
 4. Click **Deploy**.
 5. Copy the final URL, then return to Supabase **Authentication → URL Configuration** and set the Site URL and Redirect URLs to it (step 2.1).
@@ -111,7 +109,7 @@ If you use a **custom Supabase domain**, add that exact host to `connect-src` an
 1. Open your live site → `/auth`, register with your own email, and confirm it from the email.
 2. Open [supabase/bootstrap-super-admin.sql](supabase/bootstrap-super-admin.sql), replace the email with yours, and run it in the Supabase SQL Editor.
 3. Sign in and open `/admin`.
-4. **Admin → Settings**: enter the real bank details, enable bank transfer, and set the delivery fee and free-delivery threshold (defaults LKR 450 and 15,000).
+4. **Admin → Settings**: enter the real bank details, delivery fees, footer links, size chart and customer contact details.
 5. **Admin → Team**: give other registered, verified people Admin or Super admin access.
 
 ---

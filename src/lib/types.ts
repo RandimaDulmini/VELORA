@@ -36,6 +36,20 @@ export type StoreSettings = {
   footer_orders_label: string;
   footer_contact_enabled: boolean;
   footer_contact_label: string;
+  size_guide_intro: string;
+  size_guide_chart: SizeGuideRow[];
+  contact_intro: string;
+  contact_email: string;
+  contact_phone: string;
+  contact_whatsapp: string;
+  contact_address: string;
+  contact_hours: string;
+};
+export type SizeGuideRow = {
+  size: string;
+  bust: string;
+  waist: string;
+  hips: string;
 };
 export type Order = {
   id: string;

@@ -42,7 +42,7 @@ Open **http://localhost:3000**. You can browse the demo immediately. Set the var
 ## 2. Set up Supabase
 
 1. Create a Supabase project in a region appropriate for your customers, for example Singapore.
-2. Open **SQL Editor** and run the files in `supabase/migrations/` in filename order (`001`, `002`, then `003`). They create the tables, functions, RLS policies, audit trail, colour-aware inventory, customer delivery reviews and Storage buckets.
+2. Open **SQL Editor** and run every file in `supabase/migrations/` in filename order (`001` through `005`). They create the tables, functions, RLS policies, audit trail, colour-aware inventory, customer delivery reviews, editable footer information and Storage buckets.
 3. Optionally run [supabase/seed.sql](supabase/seed.sql) for the catalogue from your HTML. **The seed uses sample stock of 10 units per size. Review real products, prices, descriptions, photographs, sizes and inventory before opening.** Nine products without embedded photos use a neutral illustrated placeholder.
 4. Copy your project URL and **publishable key** from the project API settings into `.env.local`. A service-role secret is not used by this application.
 
@@ -50,11 +50,9 @@ Open **http://localhost:3000**. You can browse the demo immediately. Set the var
 NEXT_PUBLIC_SUPABASE_URL=https://YOUR_PROJECT.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=YOUR_PUBLISHABLE_KEY
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_WHATSAPP_NUMBER=YOUR_REAL_COUNTRY_CODE_AND_NUMBER
-NEXT_PUBLIC_SUPPORT_EMAIL=YOUR_REAL_SUPPORT_EMAIL
 ```
 
-Leave the optional contact values empty to hide the respective link. The WhatsApp number uses digits only, for example the country code `94` followed by the business number without a leading domestic zero. Do not use a placeholder bank account or support number for launch.
+Enter the public contact details and size chart later under **Admin → Store settings**. Do not use placeholder bank or contact information for launch.
 
 The CSP in `next.config.ts` allows standard `*.supabase.co` project hosts. If you use a custom Supabase domain, add that exact HTTPS/WSS host to the appropriate `connect-src` and `img-src` directives before deploying.
 
@@ -102,13 +100,14 @@ Official references: [Supabase server-side authentication](https://supabase.com/
 
 Role data lives in a protected database table, not editable user metadata. Every privileged RPC rechecks the current role in the database, so revoking access also blocks old sessions from making privileged changes.
 
-## 4. Configure payment and delivery
+## 4. Configure store information, payment and delivery
 
 Open **`/admin/settings`** as a super admin:
 
 1. Enter the real bank name, account holder, account number and branch.
 2. Enable bank transfers only after verifying those details.
 3. Set your delivery fee and free-delivery threshold. Defaults are LKR 450 and LKR 15,000.
+4. Choose the footer links to display and enter the size chart and customer contact details.
 
 Bank transfers are disabled until configured. Cash on delivery is always available. There is no card gateway or automatic bank integration.
 

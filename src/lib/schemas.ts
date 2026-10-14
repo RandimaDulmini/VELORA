@@ -74,4 +74,36 @@ export const settingsSchema = z.object({
   footer_orders_label: z.string().trim().min(1).max(40),
   footer_contact_enabled: z.boolean(),
   footer_contact_label: z.string().trim().min(1).max(40),
+  size_guide_intro: z.string().trim().min(1).max(1000),
+  size_guide_chart: z
+    .array(
+      z.object({
+        size: z.string().trim().min(1).max(20),
+        bust: z.string().trim().min(1).max(20),
+        waist: z.string().trim().min(1).max(20),
+        hips: z.string().trim().min(1).max(20),
+      }),
+    )
+    .min(1, 'Add at least one size-chart row.')
+    .max(20),
+  contact_intro: z.string().trim().max(1000),
+  contact_email: z.union([z.literal(''), z.email('Enter a valid contact email address.')]),
+  contact_phone: z
+    .string()
+    .trim()
+    .max(30)
+    .refine(
+      (value) => value === '' || /^\+?[0-9 ()-]{7,30}$/.test(value),
+      'Enter a valid contact phone number.',
+    ),
+  contact_whatsapp: z
+    .string()
+    .trim()
+    .max(30)
+    .refine(
+      (value) => value === '' || /^\+?[0-9 ()-]{7,30}$/.test(value),
+      'Enter a valid WhatsApp number.',
+    ),
+  contact_address: z.string().trim().max(500),
+  contact_hours: z.string().trim().max(300),
 });

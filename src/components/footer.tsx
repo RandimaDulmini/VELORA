@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { MessageCircle } from 'lucide-react';
 import type { StoreSettings } from '@/lib/types';
 export function Footer({ settings }: { settings: StoreSettings }) {
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, '');
-  const email = process.env.NEXT_PUBLIC_SUPPORT_EMAIL;
+  const wa = settings.contact_whatsapp.replace(/\D/g, '');
   return (
     <>
       <footer className="reference-footer">
@@ -28,13 +27,7 @@ export function Footer({ settings }: { settings: StoreSettings }) {
           {settings.footer_orders_enabled && (
             <Link href="/account">{settings.footer_orders_label}</Link>
           )}
-          {settings.footer_contact_enabled && wa ? (
-            <a href={`https://wa.me/${wa}`} target="_blank" rel="noopener noreferrer">
-              {settings.footer_contact_label}
-            </a>
-          ) : settings.footer_contact_enabled && email ? (
-            <a href={`mailto:${email}`}>{settings.footer_contact_label}</a>
-          ) : settings.footer_contact_enabled ? (
+          {settings.footer_contact_enabled ? (
             <Link href="/info/contact">{settings.footer_contact_label}</Link>
           ) : null}
         </nav>

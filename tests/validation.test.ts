@@ -173,10 +173,20 @@ test('store footer settings require safe labels and explicit visibility choices'
     footer_orders_label: 'My orders',
     footer_contact_enabled: false,
     footer_contact_label: 'Contact us',
+    size_guide_intro: 'Use this chart as a general guide.',
+    size_guide_chart: [{ size: 'S', bust: '86–89', waist: '68–71', hips: '91–94' }],
+    contact_intro: 'We are here to help.',
+    contact_email: 'hello@velora.test',
+    contact_phone: '+94 77 123 4567',
+    contact_whatsapp: '+94 77 123 4567',
+    contact_address: 'Colombo, Sri Lanka',
+    contact_hours: 'Monday–Saturday, 9:00 AM–6:00 PM',
   };
   assert(settingsSchema.safeParse(settings).success);
   assert(!settingsSchema.safeParse({ ...settings, footer_contact_label: '' }).success);
   assert(!settingsSchema.safeParse({ ...settings, footer_orders_label: 'x'.repeat(41) }).success);
+  assert(!settingsSchema.safeParse({ ...settings, size_guide_chart: [] }).success);
+  assert(!settingsSchema.safeParse({ ...settings, contact_email: 'not-an-email' }).success);
 });
 test('receipt and product uploads reject oversized files and unsupported formats before submission', () => {
   assert.equal(validateImageUpload({ size: MAX_IMAGE_BYTES, type: 'image/jpeg' }), '');

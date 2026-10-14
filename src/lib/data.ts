@@ -17,6 +17,23 @@ const defaultSettings: StoreSettings = {
   footer_orders_label: 'My orders',
   footer_contact_enabled: true,
   footer_contact_label: 'Contact us',
+  size_guide_intro:
+    'Use this chart as a general guide. Product measurements and fit can vary by style, so contact us if you need help choosing.',
+  size_guide_chart: [
+    { size: 'XS', bust: '81–84', waist: '63–66', hips: '86–89' },
+    { size: 'S', bust: '86–89', waist: '68–71', hips: '91–94' },
+    { size: 'M', bust: '91–94', waist: '73–76', hips: '96–99' },
+    { size: 'L', bust: '96–101', waist: '78–83', hips: '101–106' },
+    { size: 'XL', bust: '103–108', waist: '85–90', hips: '108–113' },
+    { size: 'XXL', bust: '110–116', waist: '92–98', hips: '115–121' },
+  ],
+  contact_intro:
+    'Questions about your fit, a piece you love, or an order? Get in touch and include your order number if you have one.',
+  contact_email: '',
+  contact_phone: '',
+  contact_whatsapp: '',
+  contact_address: '',
+  contact_hours: '',
 };
 export const getProducts = cache(async (includeHidden = false): Promise<Product[]> => {
   if (!isConfigured()) return sampleProducts as Product[];

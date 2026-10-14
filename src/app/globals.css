@@ -1336,6 +1336,55 @@ input[type='radio'] {
 .footer-link-setting .check-line {
   margin: 12px 0 0;
 }
+.size-chart-editor {
+  margin-top: 22px;
+}
+.size-chart-editor-row {
+  display: grid;
+  grid-template-columns: minmax(80px, 0.55fr) repeat(3, minmax(130px, 1fr)) auto;
+  gap: 12px;
+  align-items: end;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.size-chart-editor-head {
+  padding-bottom: 6px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.size-chart-editor-row label {
+  margin: 0;
+}
+.size-chart-editor-row label > span {
+  display: none;
+}
+.size-chart-editor-row input {
+  margin-top: 0 !important;
+}
+.size-chart-editor > .button {
+  margin-top: 16px;
+}
+.text-button {
+  border: 0;
+  background: transparent;
+  color: var(--bronze);
+  cursor: pointer;
+  padding: 12px 4px;
+  font: inherit;
+  font-size: 11px;
+}
+.text-button.danger {
+  color: #9a3f38;
+}
+.text-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+.settings-contact-grid {
+  margin-top: 18px;
+}
 label > input:not([type='checkbox']):not([type='radio']),
 label > textarea,
 label > select {
@@ -2097,6 +2146,43 @@ fieldset {
   gap: 14px;
   flex-wrap: wrap;
   margin: 25px 0;
+}
+.size-guide-table {
+  margin: 28px 0 38px;
+  border: 1px solid var(--line);
+}
+.size-guide-table th,
+.size-guide-table td {
+  text-align: center;
+}
+.size-guide-table tbody th {
+  color: var(--ink);
+  font-size: 12px;
+}
+.contact-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0 35px;
+}
+.contact-details-grid > section {
+  padding: 22px;
+  border: 1px solid var(--line);
+  background: var(--soft);
+}
+.contact-details-grid h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+.contact-details-grid a {
+  color: var(--bronze);
+  overflow-wrap: anywhere;
+}
+.contact-details-grid p {
+  margin: 0;
+  color: var(--muted);
+  white-space: pre-line;
+  line-height: 1.7;
 }
 .loading-state {
   height: 450px;
@@ -3226,6 +3312,30 @@ fieldset {
   }
   .product-form .form-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  .size-chart-editor-head {
+    display: none;
+  }
+  .size-chart-editor-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 16px 0;
+  }
+  .size-chart-editor-row label > span {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: 10px;
+  }
+  .size-chart-editor-row .text-button {
+    justify-self: start;
+  }
+  .settings-contact-grid,
+  .contact-details-grid {
+    grid-template-columns: 1fr;
+  }
+  .settings-contact-grid .span-2 {
+    grid-column: auto;
   }
   .admin-order-filters {
     gap: 10px;

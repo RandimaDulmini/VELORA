@@ -17,8 +17,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   if (!titles[slug]) notFound();
   const s = await getPublicSettings();
-  const wa = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, '');
-  const email = process.env.NEXT_PUBLIC_SUPPORT_EMAIL;
+  const wa = s.contact_whatsapp.replace(/\D/g, '');
+  const phoneHref = s.contact_phone.replace(/[^+\d]/g, '');
   return (
     <div className="info-page">
       <span className="eyebrow">THE LITTLE DETAILS</span>
@@ -54,11 +54,29 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </>
       ) : slug === 'size-guide' ? (
         <>
-          <p>
-            Fit can differ between imported labels. The sizes shown on each product are the
-            supplier’s sizes. Contact us for garment-specific measurements before ordering if you
-            are unsure.
-          </p>
+          <p>{s.size_guide_intro}</p>
+          <div className="table-scroll size-guide-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Size</th>
+                  <th>Bust / chest (cm)</th>
+                  <th>Waist (cm)</th>
+                  <th>Hips (cm)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {s.size_guide_chart.map((row) => (
+                  <tr key={`${row.size}-${row.bust}-${row.waist}-${row.hips}`}>
+                    <th scope="row">{row.size}</th>
+                    <td>{row.bust}</td>
+                    <td>{row.waist}</td>
+                    <td>{row.hips}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <h2>How to measure</h2>
           <div className="measurement-grid">
             <section>
@@ -149,31 +167,49 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         </>
       ) : (
         <>
-          <p>
-            Questions about your fit, a piece you love, or an order? Get in touch and include your
-            order number if you have one.
-          </p>
-          <div className="contact-options">
+          {s.contact_intro && <p>{s.contact_intro}</p>}
+          <div className="contact-details-grid">
             {wa && (
-              <a
-                className="button"
-                href={`https://wa.me/${wa}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Chat on WhatsApp
-              </a>
+              <section>
+                <h2>WhatsApp</h2>
+                <a href={`https://wa.me/${wa}`} target="_blank" rel="noopener noreferrer">
+                  {s.contact_whatsapp}
+                </a>
+              </section>
             )}
-            {email && (
-              <a className="button secondary" href={`mailto:${email}`}>
-                Email {email}
-              </a>
+            {s.contact_email && (
+              <section>
+                <h2>Email</h2>
+                <a href={`mailto:${s.contact_email}`}>{s.contact_email}</a>
+              </section>
             )}
-            {!wa && !email && (
-              <p className="notice-panel">
-                Our contact details will be published here before the store opens.
-              </p>
+            {s.contact_phone && (
+              <section>
+                <h2>Phone</h2>
+                <a href={`tel:${phoneHref}`}>{s.contact_phone}</a>
+              </section>
             )}
+            {s.contact_hours && (
+              <section>
+                <h2>Opening hours</h2>
+                <p>{s.contact_hours}</p>
+              </section>
+            )}
+            {s.contact_address && (
+              <section>
+                <h2>Address</h2>
+                <p>{s.contact_address}</p>
+              </section>
+            )}
+            {!wa &&
+              !s.contact_email &&
+              !s.contact_phone &&
+              !s.contact_address &&
+              !s.contact_hours && (
+                <p className="notice-panel">
+                  Our contact details will be published here before the store opens.
+                </p>
+              )}
           </div>
           <h2>Already ordered?</h2>
           <p>

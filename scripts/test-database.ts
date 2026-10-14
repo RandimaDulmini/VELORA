@@ -215,6 +215,17 @@ await check('bank transfers need real configured details', async () => {
       footer_orders_label: 'Track my orders',
       footer_contact_enabled: false,
       footer_contact_label: 'Talk to us',
+      size_guide_intro: 'Check these measurements before ordering.',
+      size_guide_chart: [
+        { size: 'S', bust: '86–89', waist: '68–71', hips: '91–94' },
+        { size: 'M', bust: '91–94', waist: '73–76', hips: '96–99' },
+      ],
+      contact_intro: 'We are here to help.',
+      contact_email: 'hello@velora.test',
+      contact_phone: '+94 77 123 4567',
+      contact_whatsapp: '+94 77 123 4567',
+      contact_address: 'Colombo, Sri Lanka',
+      contact_hours: 'Monday–Saturday, 9:00 AM–6:00 PM',
     }),
   ]);
   const footer = (
@@ -222,13 +233,19 @@ await check('bank transfers need real configured details', async () => {
       footer_size_guide_label: string;
       footer_orders_label: string;
       footer_contact_enabled: boolean;
+      size_guide_intro: string;
+      size_guide_chart: { size: string }[];
+      contact_email: string;
     }>(
-      'select footer_size_guide_label,footer_orders_label,footer_contact_enabled from public.store_settings where id=true',
+      'select footer_size_guide_label,footer_orders_label,footer_contact_enabled,size_guide_intro,size_guide_chart,contact_email from public.store_settings where id=true',
     )
   ).rows[0];
   assert.equal(footer.footer_size_guide_label, 'Find your size');
   assert.equal(footer.footer_orders_label, 'Track my orders');
   assert.equal(footer.footer_contact_enabled, false);
+  assert.equal(footer.size_guide_intro, 'Check these measurements before ordering.');
+  assert.equal(footer.size_guide_chart[1].size, 'M');
+  assert.equal(footer.contact_email, 'hello@velora.test');
 });
 let bankOrder = '';
 let receipt = '';

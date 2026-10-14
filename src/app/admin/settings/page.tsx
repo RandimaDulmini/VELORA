@@ -2,6 +2,7 @@ import { requireStaff } from '@/lib/auth';
 import { getSettings } from '@/lib/data';
 import { ActionForm } from '@/components/action-form';
 import { saveSettings } from '@/app/actions/store';
+import { SizeChartFields } from '@/components/size-chart-fields';
 export default async function Page() {
   await requireStaff(true);
   const s = await getSettings();
@@ -144,6 +145,92 @@ export default async function Page() {
                   Show in footer
                 </label>
               </div>
+            </div>
+          </section>
+          <section className="panel span-2">
+            <h2>Size guide content</h2>
+            <p className="muted">
+              This information appears on the customer Size Guide page. Measurements are in
+              centimetres.
+            </p>
+            <label>
+              Introduction
+              <textarea
+                name="size_guide_intro"
+                required
+                maxLength={1000}
+                rows={3}
+                defaultValue={s.size_guide_intro}
+              />
+            </label>
+            <SizeChartFields initialRows={s.size_guide_chart} />
+          </section>
+          <section className="panel span-2">
+            <h2>Contact details</h2>
+            <p className="muted">
+              Add the details customers should see after opening the Contact link. Leave an optional
+              field empty to hide it.
+            </p>
+            <label>
+              Contact-page message
+              <textarea
+                name="contact_intro"
+                maxLength={1000}
+                rows={3}
+                defaultValue={s.contact_intro}
+              />
+            </label>
+            <div className="form-grid settings-contact-grid">
+              <label>
+                Email address
+                <input
+                  name="contact_email"
+                  type="email"
+                  maxLength={254}
+                  placeholder="hello@example.com"
+                  defaultValue={s.contact_email}
+                />
+              </label>
+              <label>
+                Phone number
+                <input
+                  name="contact_phone"
+                  type="tel"
+                  maxLength={30}
+                  placeholder="+94 77 123 4567"
+                  defaultValue={s.contact_phone}
+                />
+              </label>
+              <label>
+                WhatsApp number
+                <input
+                  name="contact_whatsapp"
+                  type="tel"
+                  maxLength={30}
+                  placeholder="+94 77 123 4567"
+                  defaultValue={s.contact_whatsapp}
+                />
+              </label>
+              <label>
+                Opening hours
+                <textarea
+                  name="contact_hours"
+                  maxLength={300}
+                  rows={3}
+                  placeholder="Monday–Saturday, 9:00 AM–6:00 PM"
+                  defaultValue={s.contact_hours}
+                />
+              </label>
+              <label className="span-2">
+                Address
+                <textarea
+                  name="contact_address"
+                  maxLength={500}
+                  rows={3}
+                  placeholder="Your shop or office address"
+                  defaultValue={s.contact_address}
+                />
+              </label>
             </div>
           </section>
         </div>
